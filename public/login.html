@@ -1,3 +1,5 @@
+<!-- This is the page you see when you open the website without logging in -->
+
 <!DOCTYPE html>
 
 <html>
@@ -9,17 +11,27 @@
 	</head>
 
 	<body>
-		<div class="container">	
-			<div class="login">
-				<!-- <img src="/public/img/clementine_150.png" /> -->
-				<br />
-				<p class="clementine-text">Voting App</p>
-				<a href="/auth/github">
+		<div class="top_menu">
+			<div class="home">
+				<a href="/">
 					<div class="btn" id="login-btn">
-						<!-- <img src="/public/img/github_32px.png" alt="github logo" /> -->
-						<p>LOGIN WITH TWITTER</p>
+						<p>Home</p>
 					</div>
 				</a>
+			</div>
+			<div class="login">
+				<a href="/auth/github">
+					<div class="btn" id="login-btn">
+						<p>Log in with Twitter</p>
+					</div>
+				</a>
+			</div>
+
+		</div>
+		<div class="container">	
+			<p class="clementine-text">Voting App</p>
+			<div class="polls">
+			
 			</div>
 		</div>
 	</body>
