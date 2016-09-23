@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Voting App</title>
+		
+		<link href="/public/css/main.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div class="top-menu">
+			<div class="home">
+				<a href="/polls">
+					<div class="btn" id="home-btn">
+						<p>Home</p>
+					</div>
+				</a>
+			</div>
+			<div class="my-polls">
+				<a href="/mypolls">
+					<div class="btn" id="my-polls-btn">
+						<p>My Polls</p>
+					</div>
+				</a>
+			</div>
+			<div class="new-poll">
+				<a href="/newpoll">
+					<div class="btn" id="new-poll-btn">
+						<p>New Poll</p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="container">	
+			<p>New poll</p>
+			<form action="/handle-new-poll-submit" method="post">
+				<div>
+			        <label for="title">Title:</label>
+			        <input type="text" id="title" name="poll_title" />
+			    </div>
+			    <div>
+			        <label for="options">Options (Separate with lines or commas):</label>
+			        <textarea id="options" name="poll_options"></textarea>
+			    </div>
+			    
+			    <div class="button">
+			        <button type="submit">Create Poll	</button>
+			    </div>	
+			</form>
+		</div>
+
+		
+		<script type="text/javascript" src="common/ajax-functions.js"></script>
+		<script type="text/javascript" src="controllers/clickController.client.js"></script>
+		<script type="text/javascript" src="controllers/userController.client.js"></script>
+	</body>
+
+</html>

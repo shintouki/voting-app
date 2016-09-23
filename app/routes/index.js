@@ -15,8 +15,6 @@ module.exports = function (app, passport) {
 
 	var clickHandler = new ClickHandler();
 
-	
-
 	app.route('/polls')
 		.get(function (req, res) {
 			res.sendFile(path + '/public/polls.html');
@@ -25,17 +23,17 @@ module.exports = function (app, passport) {
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout();
-			res.redirect('/login');
+			res.redirect('/polls');
 		});
 
-	app.route('/profile')
+	app.route('/mypolls')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/profile.html');
+			res.sendFile(path + '/public/my-polls.html');
 		});
 
-	app.route('/after-twitter-auth')
+	app.route('/newpoll')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public//after-twitter-auth.html');
+			res.sendFile(path + '/public/new-poll.html');
 		});
 
 	app.route('/api/:id')
@@ -49,10 +47,15 @@ module.exports = function (app, passport) {
 	app.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {
 			successRedirect: '/after-twitter-auth',
-			failureRedirect: '/login'
+			// failureRedirect: '/polls'
 		}));
 
-	app.route('/api/:id/clicks')
+	app.route('/after-twitter-auth')
+		.get(isLoggedIn, function (req, res) {
+			res.sendFile(path + '/public/after-twitter-auth.html');
+		});
+
+	app.route('/api/:id/polls')
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);

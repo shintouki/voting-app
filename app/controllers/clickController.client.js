@@ -6,7 +6,7 @@
    var deleteButton = document.querySelector('.btn-delete');
    var clickNbr = document.querySelector('#click-nbr');
    var loginButton = document.querySelector('.')
-   var apiUrl = appUrl + '/api/:id/clicks';
+   var apiUrl = appUrl + '/api/:id/polls';
 
    function updateClickCount (data) {
       var clicksObject = JSON.parse(data);
