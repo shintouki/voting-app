@@ -1,4 +1,4 @@
-<!-- This is the page you see when you open the website without logging in -->
+<!-- change the name of this file later -->
 
 <!DOCTYPE html>
 
@@ -13,14 +13,14 @@
 	<body>
 		<div class="top_menu">
 			<div class="home">
-				<a href="/">
+				<a href="/login">
 					<div class="btn" id="login-btn">
 						<p>Home</p>
 					</div>
 				</a>
 			</div>
 			<div class="login">
-				<a href="/auth/github">
+				<a href="/auth/twitter" onclick="window.open('/auth/twitter', 'twitterWindow', 'width=500, height=650'); return false;">
 					<div class="btn" id="login-btn">
 						<p>Log in with Twitter</p>
 					</div>
@@ -30,8 +30,10 @@
 		</div>
 		<div class="container">	
 			<p class="clementine-text">Voting App</p>
+			<p>Select a poll to see voting results and vote.</p>
+			<p>Log in with Twitter to create and edit your own polls.</p>
 			<div class="polls">
-			
+
 			</div>
 		</div>
 	</body>

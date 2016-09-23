@@ -16,9 +16,9 @@
       var userObject = JSON.parse(data);
 
       if (userObject.displayName !== null) {
-         updateHtmlElement(userObject, displayName, 'displayName');
+         updateHtmlElement(userObject, displayName, 'screen_name');
       } else {
-         updateHtmlElement(userObject, displayName, 'username');
+         updateHtmlElement(userObject, displayName, 'name');
       }
 
       if (profileId !== null) {
@@ -26,12 +26,12 @@
       }
 
       if (profileUsername !== null) {
-         updateHtmlElement(userObject, profileUsername, 'username');   
+         updateHtmlElement(userObject, profileUsername, 'name');   
       }
 
-      if (profileRepos !== null) {
-         updateHtmlElement(userObject, profileRepos, 'publicRepos');   
-      }
+      // if (profileRepos !== null) {
+      //    updateHtmlElement(userObject, profileRepos, 'publicRepos');   
+      // }
 
    }));
 })();

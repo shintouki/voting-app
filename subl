@@ -1,0 +1,8 @@
+app/controllers/clickController.client.js
+app/controllers/clickHandler.server.js
+app/controllers/userController.client.js
+app/common/ajax-functions.js
+app/config/auth.js
+app/config/passport.js
+app/models/users.js
+app/routes/index.js
