@@ -15,14 +15,11 @@ module.exports = function (app, passport) {
 
 	var clickHandler = new ClickHandler();
 
-	app.route('/')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/index.html');
-		});
+	
 
-	app.route('/login')
+	app.route('/polls')
 		.get(function (req, res) {
-			res.sendFile(path + '/public/login.html');
+			res.sendFile(path + '/public/polls.html');
 		});
 
 	app.route('/logout')
@@ -59,4 +56,9 @@ module.exports = function (app, passport) {
 		.get(isLoggedIn, clickHandler.getClicks)
 		.post(isLoggedIn, clickHandler.addClick)
 		.delete(isLoggedIn, clickHandler.resetClicks);
+
+	app.route('*')
+		.get(function (req, res) {
+			res.redirect('/polls');
+		});
 };
