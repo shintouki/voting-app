@@ -38,6 +38,42 @@
 		<script type="text/javascript">
 			window.loginCallBack = function () {
 				console.log("login successful");
+				var topMenu = document.getElementsByClassName("top-menu")[0];
+				var login = document.getElementsByClassName("login")[0];
+
+				topMenu.removeChild(login);
+
+				// Create my polls link
+				var myPollsDiv = document.createElement('div');
+				myPollsDiv.className = "my-polls";
+				var myPollsAnchor = document.createElement('a');
+				myPollsAnchor.setAttribute('href', "/mypolls")
+				var myPollsTextDiv = document.createElement('div');
+				myPollsTextDiv.className = "btn";
+				myPollsTextDiv.id = "my-polls-btn";
+				var myPollsText = document.createElement('p');
+				myPollsText.innerHTML = "My Polls";
+				myPollsTextDiv.appendChild(myPollsText);
+				myPollsAnchor.appendChild(myPollsTextDiv);
+				myPollsDiv.appendChild(myPollsAnchor);
+				topMenu.appendChild(myPollsDiv);
+
+				// Create new poll link
+				var newPollDiv = document.createElement('div');
+				newPollDiv.className = "my-polls";
+				var newPollAnchor = document.createElement('a');
+				newPollAnchor.setAttribute('href', "/newpoll")
+				var newPollTextDiv = document.createElement('div');
+				newPollTextDiv.className = "btn";
+				newPollTextDiv.id = "my-polls-btn";
+				var newPollText = document.createElement('p');
+				newPollText.innerHTML = "New Poll";
+				newPollTextDiv.appendChild(newPollText);
+				newPollAnchor.appendChild(newPollTextDiv);
+				newPollDiv.appendChild(newPollAnchor);
+				topMenu.appendChild(newPollDiv);
+
+				
 			}
 		</script>
 	</body>
