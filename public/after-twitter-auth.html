@@ -2,9 +2,11 @@
     if (window.opener) {
         window.opener.focus();
 
-      if(window.opener.loginCallBack) {
-        window.opener.loginCallBack();
-      }
+      // if(window.opener.loginCallBack) {
+      //   window.opener.loginCallBack();
+      // }
     }
+
+    window.opener.location = "http://127.0.0.1:8080/polls-logged-in"
     window.close();
 </script>
