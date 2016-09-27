@@ -2,9 +2,9 @@
 
 (function () {
 
-   var profileId = document.querySelector('#profile-id') || null;
-   var profileUsername = document.querySelector('#profile-username') || null;
-   var profileRepos = document.querySelector('#profile-repos') || null;
+   // var profileId = document.querySelector('#profile-id') || null;
+   // var profileUsername = document.querySelector('#profile-username') || null;
+   // var profileRepos = document.querySelector('#profile-repos') || null;
    var displayName = document.querySelector('#display-name');
    var apiUrl = appUrl + '/api/:id';
 
@@ -14,20 +14,24 @@
 
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function (data) {
       var userObject = JSON.parse(data);
-
-      if (userObject.displayName !== null) {
-         updateHtmlElement(userObject, displayName, 'screen_name');
-      } else {
-         updateHtmlElement(userObject, displayName, 'name');
+      console.log(data);
+      if (displayName !== null) {
+         updateHtmlElement(userObject, displayName, 'name');   
       }
 
-      if (profileId !== null) {
-         updateHtmlElement(userObject, profileId, 'id');   
-      }
+      // if (userObject.displayName !== null) {
+      //    updateHtmlElement(userObject, displayName, 'screen_name');
+      // } else {
+      //    updateHtmlElement(userObject, displayName, 'name');
+      // }
 
-      if (profileUsername !== null) {
-         updateHtmlElement(userObject, profileUsername, 'name');   
-      }
+      // if (profileId !== null) {
+      //    updateHtmlElement(userObject, profileId, 'id');   
+      // }
+
+      // if (profileUsername !== null) {
+      //    updateHtmlElement(userObject, profileUsername, 'name');   
+      // }
 
       // if (profileRepos !== null) {
       //    updateHtmlElement(userObject, profileRepos, 'publicRepos');   

@@ -33,6 +33,7 @@ module.exports = function (passport) {
 					var newUser = new User();
 
 					newUser.twitter.id = profile.id;
+					newUser.twitter.name = profile.name;
 					// newUser.twitter.username = profile.username;
 					// newUser.twitter.displayName = profile.displayName;
 					// newUser.twitter.publicRepos = profile._json.public_repos;
