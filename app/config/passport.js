@@ -29,7 +29,7 @@ module.exports = function (passport) {
 		callbackURL: configAuth.twitterAuth.callbackURL
 	},
 	function (token, tokenSecret, profile, done) {
-		console.log(profile);
+		// console.log(profile);
 		process.nextTick(function () {
 			User.findOne({ 'twitter.id': profile.id }, function (err, user) {
 				if (err) {
@@ -43,7 +43,8 @@ module.exports = function (passport) {
 
 					newUser.twitter.id = profile.id;
 					newUser.twitter.displayName = profile.displayName;
-				
+					newUser.userPolls.polls = [];
+
 					// newUser.twitter.username = profile.username;
 					// newUser.twitter.displayName = profile.displayName;
 					// newUser.twitter.publicRepos = profile._json.public_repos;

@@ -7,6 +7,9 @@ var User = new Schema({
 	twitter: {
 		id: String,
 		displayName: String
+	},
+	userPolls: {
+		polls: [{ title: String, options: String }]
 	}
 });
 
