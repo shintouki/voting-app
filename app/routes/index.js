@@ -60,10 +60,10 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/after-twitter-auth.html');
 		});
 
-	app.route('/api/:id/polls')
-		.get(isLoggedIn, clickHandler.getClicks)
-		.post(isLoggedIn, clickHandler.addClick)
-		.delete(isLoggedIn, clickHandler.resetClicks);
+	// app.route('/api/:id/polls')
+	// 	.get(isLoggedIn, clickHandler.getClicks)
+	// 	.post(isLoggedIn, clickHandler.addClick)
+	// 	.delete(isLoggedIn, clickHandler.resetClicks);
 
 	// app.use(function (req, res, next) {
 	// 	res.locals.login = req.isAuthenticated();

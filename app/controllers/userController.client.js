@@ -14,9 +14,10 @@
 
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, function (data) {
       var userObject = JSON.parse(data);
+      // console.log(apiUrl);
       console.log(data);
       if (displayName !== null) {
-         updateHtmlElement(userObject, displayName, 'name');   
+         updateHtmlElement(userObject, displayName, 'displayName');   
       }
 
       // if (userObject.displayName !== null) {

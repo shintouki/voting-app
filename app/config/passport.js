@@ -5,14 +5,22 @@ var User = require('../models/users');
 var configAuth = require('./auth');
 
 module.exports = function (passport) {
-	passport.serializeUser(function (user, done) {
-		done(null, user.id);
+	// passport.serializeUser(function (user, done) {
+	// 	done(null, user.id);
+	// });
+
+	// passport.deserializeUser(function (id, done) {
+	// 	User.findById(id, function (err, user) {
+	// 		done(err, user);
+	// 	});
+	// });
+
+	passport.serializeUser(function(user, cb) {
+	  cb(null, user);
 	});
 
-	passport.deserializeUser(function (id, done) {
-		User.findById(id, function (err, user) {
-			done(err, user);
-		});
+	passport.deserializeUser(function(obj, cb) {
+	  cb(null, obj);
 	});
 
 	passport.use(new TwitterStrategy({
@@ -21,6 +29,7 @@ module.exports = function (passport) {
 		callbackURL: configAuth.twitterAuth.callbackURL
 	},
 	function (token, tokenSecret, profile, done) {
+		console.log(profile);
 		process.nextTick(function () {
 			User.findOne({ 'twitter.id': profile.id }, function (err, user) {
 				if (err) {
@@ -33,7 +42,8 @@ module.exports = function (passport) {
 					var newUser = new User();
 
 					newUser.twitter.id = profile.id;
-					newUser.twitter.name = profile.name;
+					newUser.twitter.displayName = profile.displayName;
+				
 					// newUser.twitter.username = profile.username;
 					// newUser.twitter.displayName = profile.displayName;
 					// newUser.twitter.publicRepos = profile._json.public_repos;
