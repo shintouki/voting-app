@@ -5,23 +5,23 @@ var User = require('../models/users');
 var configAuth = require('./auth');
 
 module.exports = function (passport) {
-	// passport.serializeUser(function (user, done) {
-	// 	done(null, user.id);
-	// });
-
-	// passport.deserializeUser(function (id, done) {
-	// 	User.findById(id, function (err, user) {
-	// 		done(err, user);
-	// 	});
-	// });
-
-	passport.serializeUser(function(user, cb) {
-	  cb(null, user);
+	passport.serializeUser(function (user, done) {
+		done(null, user.id);
 	});
 
-	passport.deserializeUser(function(obj, cb) {
-	  cb(null, obj);
+	passport.deserializeUser(function (id, done) {
+		User.findById(id, function (err, user) {
+			done(err, user);
+		});
 	});
+
+	// passport.serializeUser(function(user, cb) {
+	//   cb(null, user);
+	// });
+
+	// passport.deserializeUser(function(obj, cb) {
+	//   cb(null, obj);
+	// });
 
 	passport.use(new TwitterStrategy({
 		consumerKey: configAuth.twitterAuth.consumerKey,
@@ -29,6 +29,7 @@ module.exports = function (passport) {
 		callbackURL: configAuth.twitterAuth.callbackURL
 	},
 	function (token, tokenSecret, profile, done) {
+		// profile is the info sent by twitter. ie: id, displayName, tweets
 		// console.log(profile);
 		process.nextTick(function () {
 			User.findOne({ 'twitter.id': profile.id }, function (err, user) {
