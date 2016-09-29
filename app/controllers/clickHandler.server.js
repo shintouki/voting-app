@@ -4,15 +4,15 @@ var Users = require('../models/users.js');
 
 function ClickHandler () {
 
-	// this.getClicks = function (req, res) {
-	// 	Users
-	// 		.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
-	// 		.exec(function (err, result) {
-	// 			if (err) { throw err; }
+	this.getClicks = function (req, res) {
+		Users
+			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
+			.exec(function (err, result) {
+				if (err) { throw err; }
 
-	// 			res.json(result.nbrClicks);
-	// 		});
-	// };
+				res.json(result.nbrClicks);
+			});
+	};
 
 	// this.getClicks = function (req, res) {
 	// 	Users
