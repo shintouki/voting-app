@@ -4,7 +4,7 @@
 
    // var addButton = document.querySelector('.btn-add');
    // var deleteButton = document.querySelector('.btn-delete');
-   // var clickNbr = document.querySelector('#click-nbr');
+   var clickNbr = document.querySelector('#click-nbr');
    // var loginButton = document.querySelector('.')
    var apiUrl = appUrl + '/api/:id/polls';
 
@@ -13,7 +13,7 @@
       clickNbr.innerHTML = clicksObject.clicks;
    }
 
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
+   // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
 
    addButton.addEventListener('click', function () {
 
@@ -23,12 +23,12 @@
 
    }, false);
 
-   deleteButton.addEventListener('click', function () {
+   // deleteButton.addEventListener('click', function () {
 
-      ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-      });
+   //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
+   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
+   //    });
 
-   }, false);
+   // }, false);
 
 })();
