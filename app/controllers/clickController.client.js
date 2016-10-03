@@ -4,13 +4,14 @@
 
    // var addButton = document.querySelector('.btn-add');
    // var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
+   var userPolls = document.querySelector('#user-polls');
    // var loginButton = document.querySelector('.')
    var apiUrl = appUrl + '/api/:id/polls';
 
    function updateUserPolls (data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
+      var pollsObject = JSON.parse(data);
+      // polls should be an array so fix this
+      userPolls.innerHTML = pollsObject.polls;
    }
 
    // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
