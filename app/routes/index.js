@@ -8,27 +8,33 @@ module.exports = function (app, passport) {
 	function isLoggedIn (req, res, next) {
 		if (req.isAuthenticated()) {
 			return next();
-		} else {
-			res.redirect('/polls-not-logged-in');
+		}
+		else {
+			res.redirect('/polls');
 		}
 	}
 
 	var clickHandler = new ClickHandler();
 
-	app.route('/polls-not-logged-in')
+	app.route('/polls')
 		.get(function (req, res) {
-			res.sendFile(path + '/public/polls-not-logged-in.html');
+			res.render(path + '/public/polls.html');
 		});
 
-	app.route('/polls-logged-in')
-		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/polls-logged-in.html');
-		});
+	// app.route('/polls-not-logged-in')
+	// 	.get(function (req, res) {
+	// 		res.sendFile(path + '/public/polls-not-logged-in.html');
+	// 	});
+
+	// app.route('/polls-logged-in')
+	// 	.get(isLoggedIn, function (req, res) {
+	// 		res.sendFile(path + '/public/polls-logged-in.html');
+	// 	});
 
 	app.route('/logout')
 		.get(function (req, res) {
 			req.logout();
-			res.redirect('/polls-not-logged-in');
+			res.redirect('/polls');
 		});
 
 	app.route('/mypolls')
@@ -52,7 +58,7 @@ module.exports = function (app, passport) {
 	app.route('/auth/twitter/callback')
 		.get(passport.authenticate('twitter', {
 			successRedirect: '/after-twitter-auth',
-			failureRedirect: '/polls-not-logged-in'
+			failureRedirect: '/polls'
 		}));
 
 	app.route('/after-twitter-auth')
@@ -72,7 +78,7 @@ module.exports = function (app, passport) {
 
 	app.route('*')
 		.get(function (req, res) {
-			res.redirect('/polls-logged-in');
+			res.redirect('/polls');
 		});
 
 };
