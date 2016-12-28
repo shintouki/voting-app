@@ -21,6 +21,13 @@ module.exports = function (app, passport) {
 			res.render(path + '/public/polls.html');
 		});
 
+	app.route('/polls/:pollId')
+		.get(function (req, res) {
+			res.render(path + '/public/pollDetails.html', {
+
+			});
+		});
+
 	// app.route('/polls-not-logged-in')
 	// 	.get(function (req, res) {
 	// 		res.sendFile(path + '/public/polls-not-logged-in.html');

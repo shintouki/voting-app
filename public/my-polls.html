@@ -9,29 +9,7 @@
 	</head>
 
 	<body>
-		<div class="top-menu">
-			<div class="home">
-				<a href="/polls">
-					<div class="btn" id="home-btn">
-						<p>Home</p>
-					</div>
-				</a>
-			</div>
-			<div class="my-polls">
-				<a href="/mypolls">
-					<div class="btn" id="my-polls-btn">
-						<p>My Polls</p>
-					</div>
-				</a>
-			</div>
-			<div class="new-poll">
-				<a href="/newpoll">
-					<div class="btn" id="new-poll-btn">
-						<p>New Poll</p>
-					</div>
-				</a>
-			</div>
-		</div>
+		{% include "navigation-bar.html" %}
 		<div class="container">	
 			<p>Your Polls</p>
 			<div id="user-polls">

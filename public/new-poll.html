@@ -9,29 +9,7 @@
 	</head>
 
 	<body>
-		<div class="top-menu">
-			<div class="home">
-				<a href="/polls">
-					<div class="btn" id="home-btn">
-						<p>Home</p>
-					</div>
-				</a>
-			</div>
-			<div class="my-polls">
-				<a href="/mypolls">
-					<div class="btn" id="my-polls-btn">
-						<p>My Polls</p>
-					</div>
-				</a>
-			</div>
-			<div class="new-poll">
-				<a href="/newpoll">
-					<div class="btn" id="new-poll-btn">
-						<p>New Poll</p>
-					</div>
-				</a>
-			</div>
-		</div>
+		{% include "navigation-bar.html" %}
 		<div class="container">	
 			<p>Create a new poll</p>
 			<form action="/handle-new-poll-submit" method="post">
@@ -45,7 +23,7 @@
 			    </div>
 			    
 			    <div class="button">
-			        <button type="submit" id="createPollBtn">Create Poll</button>
+			        <button type="submit" id="create-poll-btn">Create Poll</button>
 			    </div>	
 			</form>
 		</div>

@@ -9,27 +9,34 @@
    function updateUserPolls (data) {
       var pollsObject = JSON.parse(data);
       // polls should be an array so fix this
-      console.log(pollsObject);
+      // console.log(pollsObject);
       var pollsArray = pollsObject['polls'];
       for (var i=0; i<pollsArray.length; i++) {
          var title = pollsArray[i]['title'];
          var options = pollsArray[i]['options'];
+         var id = pollsArray[i]['_id'];
 
          var innerDiv = document.createElement('div');
          innerDiv.className = 'pollInnerDiv';
 
-         var pTitle = document.createElement('p');
-         var pOptions = document.createElement('p');
-         pTitle.innerHTML = title;
-         pOptions.innerHTML = options;
+         // var pTitle = document.createElement('p');
+         // var pOptions = document.createElement('p');
+         // pTitle.innerHTML = title;
+         // pOptions.innerHTML = options;
 
-         innerDiv.appendChild(pTitle);
-         innerDiv.appendChild(pOptions);
+         var a = document.createElement('a');
+         a.href =  appUrl + '/polls/' + id;
+         a.innerHTML = title;
+
+         innerDiv.appendChild(a);
+         // innerDiv.appendChild(pTitle);
+         // innerDiv.appendChild(pOptions);
 
          userPollsDiv.appendChild(innerDiv);
       }
    }
 
+   //? I think this runs updateUserPolls when page is loaded
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
 
    createPollButton.addEventListener('click', function () {

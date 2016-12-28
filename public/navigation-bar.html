@@ -1,0 +1,43 @@
+<div class="top-menu">
+    <div class="home">
+        <a href="/polls-not-logged-in">
+            <div class="btn" id="home-btn">
+                <p>Home</p>
+            </div>
+        </a>
+    </div>
+    {% if login %}
+    <div class="my-polls">
+        <a href="/mypolls">
+            <div class="btn" id="my-polls-btn">
+                <p>My Polls</p>
+            </div>
+        </a>
+    </div>
+    <div class="new-poll">
+        <a href="/newpoll">
+            <div class="btn" id="new-poll-btn">
+                <p>New Poll</p>
+            </div>
+        </a>
+    </div>
+    <div class="display-name-div">
+        <p id="display-name"></p>
+    </div>
+    <div class="logout"> 
+        <a href="/logout">
+            <div class="btn" id="logout-btn">
+                <p>Logout</p>
+            </div>
+        </a>
+    </div>
+    {% else %}
+    <div class="login">
+        <a href="/auth/twitter" onclick="window.open('/auth/twitter', 'twitterWindow', 'width=500, height=650'); return false;">
+            <div class="btn" id="login-btn">
+                <p>Log in with Twitter</p>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+</div>
