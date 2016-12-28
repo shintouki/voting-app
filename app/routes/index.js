@@ -52,6 +52,11 @@ module.exports = function (app, passport) {
 			res.json(req.user.twitter);
 		});
 
+	// app.route('/api/polls')
+	// 	.get(isLoggedIn, function (req, res) {
+	// 		res.json(req.user.userPolls);
+	// 	});
+
 	app.route('/auth/twitter')
 		.get(passport.authenticate('twitter'));
 
@@ -66,15 +71,10 @@ module.exports = function (app, passport) {
 			res.sendFile(path + '/public/after-twitter-auth.html');
 		});
 
-	// app.route('/api/:id/polls')
-	// 	.get(isLoggedIn, clickHandler.getClicks)
-	// 	.post(isLoggedIn, clickHandler.addClick)
-	// 	.delete(isLoggedIn, clickHandler.resetClicks);
-
-	// app.use(function (req, res, next) {
-	// 	res.locals.login = req.isAuthenticated();
-	// 	next();
-	// });
+	app.route('/api/:id/polls')
+		.get(isLoggedIn, clickHandler.getPolls)
+		.post(isLoggedIn, clickHandler.addPoll);
+		// .delete(isLoggedIn, clickHandler.deletePoll);
 
 	app.route('*')
 		.get(function (req, res) {

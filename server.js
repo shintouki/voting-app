@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 var swig = require('swig');
+var $ = require('jquery');
 
 var app = express();
 require('dotenv').load();
@@ -31,8 +32,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function (req, res, next) {
-  res.locals.login = req.isAuthenticated();
-  next();
+    res.locals.login = req.isAuthenticated();
+    next();
 });
 
 routes(app, passport);
