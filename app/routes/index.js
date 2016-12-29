@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var UserPollsHandler = require(path + '/app/controllers/userPollsHandler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -14,7 +14,7 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var clickHandler = new ClickHandler();
+	var userPollsHandler = new UserPollsHandler();
 
 	app.route('/polls')
 		.get(function (req, res) {
@@ -46,12 +46,12 @@ module.exports = function (app, passport) {
 
 	app.route('/mypolls')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/my-polls.html');
+			res.render(path + '/public/my-polls.html');
 		});
 
 	app.route('/newpoll')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/new-poll.html');
+			res.render(path + '/public/new-poll.html');
 		});
 
 	app.route('/api/:id')
@@ -75,12 +75,12 @@ module.exports = function (app, passport) {
 
 	app.route('/after-twitter-auth')
 		.get(isLoggedIn, function (req, res) {
-			res.sendFile(path + '/public/after-twitter-auth.html');
+			res.render(path + '/public/after-twitter-auth.html');
 		});
 
 	app.route('/api/:id/polls')
-		.get(isLoggedIn, clickHandler.getPolls)
-		.post(isLoggedIn, clickHandler.addPoll);
+		.get(isLoggedIn, userPollsHandler.getPolls)
+		.post(isLoggedIn, userPollsHandler.addPoll);
 		// .delete(isLoggedIn, clickHandler.deletePoll);
 
 	app.route('*')

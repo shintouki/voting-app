@@ -2,7 +2,7 @@
 
 var Users = require('../models/users.js');
 
-function ClickHandler () {
+function UserPollsHandler () {
 
 	this.getPolls = function (req, res) {
 		Users
@@ -15,8 +15,6 @@ function ClickHandler () {
 	};
 
 	this.addPoll = function (req, res) {
-		console.log(req);
-		console.log(res);
 		Users
 			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
 				{  
@@ -48,4 +46,4 @@ function ClickHandler () {
 
 }
 
-module.exports = ClickHandler;
+module.exports = UserPollsHandler;
