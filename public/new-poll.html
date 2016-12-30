@@ -12,14 +12,14 @@
 		{% include "navigation-bar.html" %}
 		<div class="container">	
 			<p>Create a new poll</p>
-			<form action="/handle-new-poll-submit" method="post">
+			<form method="post">
 				<div>
 			        <label for="title">Title:</label>
-			        <input type="text" id="title" name="poll_title" />
+			        <input type="text" id="title" name="pollTitle" />
 			    </div>
 			    <div>
 			        <label for="options">Options (Separate with lines or commas):</label>
-			        <textarea id="options" name="poll_options"></textarea>
+			        <textarea id="options" name="pollOptions"></textarea>
 			    </div>
 			    
 			    <div class="button">
@@ -30,7 +30,7 @@
 
 		
 		<script type="text/javascript" src="common/ajax-functions.js"></script>
-		<script type="text/javascript" src="controllers/clickController.client.js"></script>
+		<script type="text/javascript" src="controllers/createPollController.client.js"></script>
 		<script type="text/javascript" src="controllers/userController.client.js"></script>
 	</body>
 
