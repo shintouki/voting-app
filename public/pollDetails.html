@@ -7,7 +7,17 @@
     </head>
     <body>
         {% include "navigation-bar.html" %}
-
+        <h1 id="poll-title"></h1>
+        <form action="">
+            <label>I would like to vote for: </label>
+            <select name="choices">
+                <option value="">a</option>
+                <option value="">b</option>
+                <option value="">c</option>
+                <option value="">d</option>
+            </select>
+            <input type="submit">
+        </form>
 
         
         <script type="text/javascript" src="common/ajax-functions.js"></script>
