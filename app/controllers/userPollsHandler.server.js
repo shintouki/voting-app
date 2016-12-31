@@ -1,6 +1,7 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var path = process.cwd();
 
 function UserPollsHandler () {
 
@@ -20,15 +21,16 @@ function UserPollsHandler () {
 				{  
 					$push: {
 					    'userPolls.polls': {
-					            'title': "first poll",
-					            'options': "a b c"
+					            'title': req.body.pollTitle,
+					            'options': req.body.pollOptions
 					    }
 					}
 				})
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
-					res.json(result.userPolls);
+					// res.json(result.userPolls);
+					res.render(path + '/public/pollDetails.html', {});
 				}
 			);
 	};

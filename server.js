@@ -6,6 +6,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 var swig = require('swig');
+var bodyParser = require('body-parser');
+
 var $ = require('jquery');
 
 var app = express();
@@ -35,6 +37,9 @@ app.use(function (req, res, next) {
     res.locals.login = req.isAuthenticated();
     next();
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 routes(app, passport);
 

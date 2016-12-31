@@ -22,21 +22,11 @@ module.exports = function (app, passport) {
 		});
 
 	app.route('/polls/:pollId')
-		.get(function (req, res) {
+		.get(isLoggedIn, function (req, res) {
 			res.render(path + '/public/pollDetails.html', {
-
+				
 			});
 		});
-
-	// app.route('/polls-not-logged-in')
-	// 	.get(function (req, res) {
-	// 		res.sendFile(path + '/public/polls-not-logged-in.html');
-	// 	});
-
-	// app.route('/polls-logged-in')
-	// 	.get(isLoggedIn, function (req, res) {
-	// 		res.sendFile(path + '/public/polls-logged-in.html');
-	// 	});
 
 	app.route('/logout')
 		.get(function (req, res) {
