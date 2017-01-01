@@ -11,7 +11,11 @@ function UserPollsHandler () {
 			.exec(function (err, result) {
 				if (err) { throw err; }
 
-				res.json(result.userPolls);
+				if (result) {
+					res.json(result.userPolls);
+				}
+
+				
 			});
 	};
 

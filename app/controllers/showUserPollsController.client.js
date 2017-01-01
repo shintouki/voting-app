@@ -1,48 +1,48 @@
 'use strict';
 
 (function () {
+console.log("adsfasdfsafd");
+  // var createPollButton = document.querySelector('#create-poll-btn');
+  var userPollsDiv = document.querySelector('#user-polls');
+  var apiUrl = appUrl + '/api/:id/polls';
 
-   // var createPollButton = document.querySelector('#create-poll-btn');
-   var userPollsDiv = document.querySelector('#user-polls');
-   var apiUrl = appUrl + '/api/:id/polls';
+  function updateUserPolls (data) {
+    var parsedData = JSON.parse(data);
+    var pollsArray = parsedData['polls'];
+    for (var i=0; i<pollsArray.length; i++) {
+      var title = pollsArray[i]['title'];
+      var options = pollsArray[i]['options'];
+      var id = pollsArray[i]['_id'];
 
-   function updateUserPolls (data) {
-      var pollsObject = JSON.parse(data);
-      var pollsArray = pollsObject['polls'];
-      for (var i=0; i<pollsArray.length; i++) {
-         var title = pollsArray[i]['title'];
-         var options = pollsArray[i]['options'];
-         var id = pollsArray[i]['_id'];
+      var innerDiv = document.createElement('div');
+      innerDiv.className = 'pollInnerDiv';
 
-         var innerDiv = document.createElement('div');
-         innerDiv.className = 'pollInnerDiv';
+      var a = document.createElement('a');
+      a.href =  appUrl + '/polldetails/' + id;
+      a.innerHTML = title;
 
-         var a = document.createElement('a');
-         a.href =  appUrl + '/polls/' + id;
-         a.innerHTML = title;
+      innerDiv.appendChild(a);
 
-         innerDiv.appendChild(a);
+      userPollsDiv.appendChild(innerDiv);
+    }
+  }
 
-         userPollsDiv.appendChild(innerDiv);
-      }
-   }
+  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
 
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
+  // createPollButton.addEventListener('click', function () {
 
-   // createPollButton.addEventListener('click', function () {
+  //    ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
+  //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
+  //    });
 
-   //    ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-   //    });
+  // }, false);
 
-   // }, false);
+  // deleteButton.addEventListener('click', function () {
 
-   // deleteButton.addEventListener('click', function () {
+  //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
+  //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
+  //    });
 
-   //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-   //    });
-
-   // }, false);
+  // }, false);
 
 })();

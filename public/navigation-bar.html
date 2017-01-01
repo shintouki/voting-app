@@ -6,7 +6,7 @@
             </div>
         </a>
     </div>
-    {% if login %}
+    
     <div class="my-polls">
         <a href="/mypolls">
             <div class="btn" id="my-polls-btn">
@@ -31,13 +31,5 @@
             </div>
         </a>
     </div>
-    {% else %}
-    <div class="login">
-        <a href="/auth/twitter" onclick="window.open('/auth/twitter', 'twitterWindow', 'width=500, height=650'); return false;">
-            <div class="btn" id="login-btn">
-                <p>Log in with Twitter</p>
-            </div>
-        </a>
-    </div>
-    {% endif %}
+
 </div>

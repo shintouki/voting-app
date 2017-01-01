@@ -21,10 +21,10 @@ module.exports = function (app, passport) {
 			res.render(path + '/public/polls.html');
 		});
 
-	app.route('/polls/:pollId')
+	app.route('/polldetails/:pollId')
 		.get(isLoggedIn, function (req, res) {
-			res.render(path + '/public/pollDetails.html', {
-				
+			res.render(path + '/public/poll-details.html', {
+				pollId: req.params.pollId
 			});
 		});
 
