@@ -11,7 +11,14 @@ var User = new Schema({
 		displayName: String
 	},
 	userPolls: {
-		polls: [{ title: String, options: String }]
+		polls: [{
+            title: String,
+            options: [{
+                optionKey: Number,
+                optionText: String,
+                optionCount: Number
+            }]
+        }]
 	}
 });
 

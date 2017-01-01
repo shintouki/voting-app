@@ -16,13 +16,31 @@ function UserPollsHandler () {
 	};
 
 	this.addPoll = function (req, res) {
+		var optionsString = req.body.pollOptions;
+		var optionsArr = optionsString.split("\r\n");
+
+		// If there is a newline at the very end, delete this from the array.
+		if (optionsArr[optionsArr.length - 1] === "") {
+			optionsArr = optionsArr.slice(0, optionsArr.length-1);
+		}
+		
+		var optionObjectArr = [];
+		for (var i=0; i<optionsArr.length; i++) {
+			var currOption = {
+				optionKey: i,
+                optionText: optionsArr[1],
+                optionCount: 0
+			}
+			optionObjectArr.push(currOption);
+		}
+
 		Users
 			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
-				{  
+				{
 					$push: {
 					    'userPolls.polls': {
 					            'title': req.body.pollTitle,
-					            'options': req.body.pollOptions
+					            'options': optionObjectArr
 					    }
 					}
 				})
