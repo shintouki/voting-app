@@ -30,9 +30,7 @@ module.exports = function (app, passport) {
 
 	app.route('/polldetails/:pollId')
 		.get(isLoggedIn, function (req, res) {
-			res.render(path + '/public/poll-details.html', {
-				pollId: req.params.pollId
-			});
+			res.render('poll-details');
 		});
 
 	app.route('/logout')
