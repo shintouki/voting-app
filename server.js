@@ -8,8 +8,6 @@ var session = require('express-session');
 
 var bodyParser = require('body-parser');
 
-var $ = require('jquery');
-
 var app = express();
 require('dotenv').load();
 require('./app/config/passport')(passport);

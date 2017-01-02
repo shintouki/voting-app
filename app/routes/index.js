@@ -16,9 +16,15 @@ module.exports = function (app, passport) {
 
 	var userPollsHandler = new UserPollsHandler();
 
+	app.get('*', function(req, res, next) {
+	  // put user into res.locals for easy access from templates
+	  res.locals.user = req.user || null;
+
+	  next();
+	});
 	app.route('/polls')
 		.get(function (req, res) {
-			res.render(path + '/public/polls.html');
+			res.render('polls');
 		});
 
 	app.route('/polldetails/:pollId')
@@ -65,7 +71,7 @@ module.exports = function (app, passport) {
 
 	app.route('/after-twitter-auth')
 		.get(isLoggedIn, function (req, res) {
-			res.render(path + '/public/after-twitter-auth.html');
+			res.render('after-twitter-auth');
 		});
 
 	app.route('/api/:id/polls')
