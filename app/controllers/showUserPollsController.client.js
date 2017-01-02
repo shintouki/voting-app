@@ -18,7 +18,7 @@ console.log("adsfasdfsafd");
       innerDiv.className = 'pollInnerDiv';
 
       var a = document.createElement('a');
-      a.href =  appUrl + '/polldetails/' + id;
+      a.href =  appUrl + '/polldetails/?pollid=' + id;
       a.innerHTML = title;
 
       innerDiv.appendChild(a);

@@ -28,9 +28,13 @@ module.exports = function (app, passport) {
 			res.render('polls');
 		});
 
-	app.route('/polldetails/:pollId')
-		.get(isLoggedIn, function (req, res) {
-			res.render('poll-details');
+	app.route('/polldetails*')
+		.get(function (req, res) {
+			var currpollid = req.query.pollid;
+			var data = {
+				pollid: currpollid
+			}
+			res.render('poll-details', data);
 		});
 
 	app.route('/logout')
@@ -78,9 +82,9 @@ module.exports = function (app, passport) {
 		.post(isLoggedIn, userPollsHandler.addPoll);
 		// .delete(isLoggedIn, clickHandler.deletePoll);
 
-	app.route('*')
-		.get(function (req, res) {
-			res.redirect('/polls');
-		});
+	// app.route('*')
+	// 	.get(function (req, res) {
+	// 		res.redirect('/polls');
+	// 	});
 
 };

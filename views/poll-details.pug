@@ -4,13 +4,21 @@ html(lang="en")
     title Poll Details
     link(href='/public/css/main.css', rel='stylesheet', type='text/css')
   body 
-    include navigation-bar.pug
+    if (user) 
+      include navigation-bar.pug
+    else
+      .login 
+        a(href='/auth/twitter', onclick="window.open('/auth/twitter', 'twitterWindow', 'width=500, height=650'); return false;")
+          #login-btn.btn
+            p Log in with Twitter
+    p= pollid
+    p Poll Details
     h1#poll-title
     #optionsData
-    form(action='', method='post')
-      label I would like to vote for:
-      select#poll-options(name='choices')
-      input(type='submit')
+    //- form(action='', method='post')
+    //-   label I would like to vote for:
+    //-   select#poll-options(name='choices')
+    //-   input(type='submit')
     script(type='text/javascript', src='common/ajax-functions.js')
     script(type='text/javascript', src='controllers/userController.client.js')
-    script(type='text/javascript', src='controllers/pollOptionsController.client.js')
+    //- script(type='text/javascript', src='controllers/pollOptionsController.client.js')

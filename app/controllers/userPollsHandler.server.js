@@ -52,7 +52,7 @@ function UserPollsHandler () {
 					if (err) { throw err; }
 
 					// res.json(result.userPolls);
-					res.render(path + '/public/pollDetails.html', {});
+					res.redirect('/polldetails', {});
 				}
 			);
 	};
