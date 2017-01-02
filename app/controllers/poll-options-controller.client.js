@@ -21,7 +21,6 @@
     }
   }
 
-
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
 
 })();

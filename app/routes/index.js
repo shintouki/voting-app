@@ -1,7 +1,7 @@
 'use strict';
 
 var path = process.cwd();
-var UserPollsHandler = require(path + '/app/controllers/userPollsHandler.server.js');
+var UserPollsHandler = require(path + '/app/controllers/user-polls-handler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -28,14 +28,33 @@ module.exports = function (app, passport) {
 			res.render('polls');
 		});
 
-	app.route('/polldetails*')
+	// app.route('/polldetails')
+	// 	.get(function (req, res) {
+
+	// 		res.render('poll-details');
+	// 	});	
+
+	app.route('/polldetails/:pollid')
 		.get(function (req, res) {
-			var currpollid = req.query.pollid;
+			var currpollid = req.params.pollid;
+
 			var data = {
 				pollid: currpollid
 			}
+
 			res.render('poll-details', data);
-		});
+		});	
+
+// app.get('/polldetails/:pollid', function(req, res) {
+//  var currpollid = req.params.pollid;
+
+//  var data = {
+//    pollid: currpollid
+//  }
+
+//  res.render('poll-details', data);
+//  });   
+
 
 	app.route('/logout')
 		.get(function (req, res) {
@@ -86,5 +105,7 @@ module.exports = function (app, passport) {
 	// 	.get(function (req, res) {
 	// 		res.redirect('/polls');
 	// 	});
+
+
 
 };

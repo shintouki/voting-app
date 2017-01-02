@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+  head
+    title Your Polls
+    link(href='/public/css/main.css', rel='stylesheet', type='text/css')
+  body 
+    include navigation-bar.pug
+    .container
+      p Your Polls
+      #user-polls
+    script(type='text/javascript', src='ajax-functions.js')
+    script(type='text/javascript', src='user-controller.client.js')
+    script(type='text/javascript', src='show-user-polls-controller.client.js')

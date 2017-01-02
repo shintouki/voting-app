@@ -1,12 +1,12 @@
 'use strict';
 
-(function () {
+(function() {
 console.log("adsfasdfsafd");
   // var createPollButton = document.querySelector('#create-poll-btn');
   var userPollsDiv = document.querySelector('#user-polls');
   var apiUrl = appUrl + '/api/:id/polls';
-
-  function updateUserPolls (data) {
+  console.log(appUrl);
+  function updateUserPolls(data) {
     var parsedData = JSON.parse(data);
     var pollsArray = parsedData['polls'];
     for (var i=0; i<pollsArray.length; i++) {
@@ -18,7 +18,9 @@ console.log("adsfasdfsafd");
       innerDiv.className = 'pollInnerDiv';
 
       var a = document.createElement('a');
-      a.href =  appUrl + '/polldetails/?pollid=' + id;
+      a.href =  appUrl + '/polldetails/' + id;
+      // a.href = appUrl + '/polldetails';
+      // console.log(a.href);
       a.innerHTML = title;
 
       innerDiv.appendChild(a);

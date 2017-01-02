@@ -33,5 +33,9 @@
     "passport-twitter": "~1.0.4",
     "body-parser": "~1.15.2",
     "pug": "~2.0.0-beta6"
+  },
+  "devDependencies": {
+    "eslint": "~3.12.2",
+    "eslint-config-google": "^0.7.1"
   }
 }

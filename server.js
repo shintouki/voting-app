@@ -5,6 +5,7 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
+var path = require('path');
 
 var bodyParser = require('body-parser');
 
@@ -14,11 +15,15 @@ require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
 
+app.set('views', process.cwd() + '/public')
 app.set('view engine', 'pug')
 
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
+// app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
+// app.use('/common', express.static(process.cwd() + '/app/common'));
+
+app.use(express.static(path.join(__dirname, '/app/controllers')));
+app.use(express.static(path.join(__dirname, '/app/common')));
 
 app.use(session({
 	secret: 'secretVotingApp',
