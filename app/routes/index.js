@@ -16,12 +16,13 @@ module.exports = function (app, passport) {
 
 	var userPollsHandler = new UserPollsHandler();
 
-	app.get('*', function(req, res, next) {
-	  // put user into res.locals for easy access from templates
+	app.route('*')
+		.get(function(req, res, next) {
+	  // Place user into res.locals for easy access from templates
 	  res.locals.user = req.user || null;
-
 	  next();
 	});
+
 	app.route('/polls')
 		.get(function (req, res) {
 			res.render('polls');
@@ -42,12 +43,12 @@ module.exports = function (app, passport) {
 
 	app.route('/mypolls')
 		.get(isLoggedIn, function (req, res) {
-			res.render(path + '/public/my-polls.html');
+			res.render('my-polls');
 		});
 
 	app.route('/newpoll')
 		.get(isLoggedIn, function (req, res) {
-			res.render(path + '/public/new-poll.html');
+			res.render('new-poll');
 		});
 
 	app.route('/api/:id')
