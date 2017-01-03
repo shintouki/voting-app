@@ -22,8 +22,8 @@ app.set('view engine', 'pug')
 app.use('/public', express.static(process.cwd() + '/public'));
 // app.use('/common', express.static(process.cwd() + '/app/common'));
 
-app.use(express.static(path.join(__dirname, '/app/controllers')));
-app.use(express.static(path.join(__dirname, '/app/common')));
+app.use('/controllers', express.static(path.join(__dirname, '/app/controllers')));
+app.use('/common', express.static(path.join(__dirname, '/app/common')));
 
 app.use(session({
 	secret: 'secretVotingApp',
