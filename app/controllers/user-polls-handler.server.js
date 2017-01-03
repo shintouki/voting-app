@@ -1,6 +1,7 @@
 'use strict';
 
 var Users = require('../models/users.js');
+var Polls = require('../models/polls.js');
 var path = process.cwd();
 
 function createPollId () {
@@ -55,19 +56,23 @@ function UserPollsHandler () {
 			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
 				{
 					$push: {
-					    'userPolls.polls': {
-					            'title': req.body.pollTitle,
-					            'options': optionObjectArr,
-					            'pollId': pollId
-					    }
+					    'userPolls.pollIdList': pollId
 					}
 				})
 			.exec(function (err, result) {
 					if (err) { throw err; }
-
-					res.redirect('/polldetails/' + pollId);
 				}
 			);
+
+		Polls
+			.create(
+				{
+					'title': req.body.pollTitle,
+	        'options': optionObjectArr,
+	        'pollId': pollId
+				});
+			
+		res.redirect('/polldetails/' + pollId);
 	};
 
 	// this.deletePoll = function (req, res) {
