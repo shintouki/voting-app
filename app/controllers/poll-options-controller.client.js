@@ -13,17 +13,24 @@
     // console.log(pollId);
     // Find right poll
     for (var i=0; i<pollsArray.length; i++) {
-      console.log(pollsArray[i]);
+      // console.log(pollsArray[i]);
       if (pollsArray[i]['pollId'] === pollId) {
         pollObj = pollsArray[i];
         break;
       }
     }
-    console.log(pollObj);
+    // console.log(pollObj);
     var title = pollObj.title;
     pollTitle.innerHTML = title;
     var options = pollObj.options;
-    console.log(options);
+    for (var i=0; i<options.length; i++) {
+      console.log(options[i]);
+      var optionText = options[i]['optionText'];
+      var option = document.createElement('option');
+      option.innerHTML = optionText;
+      pollOptions.appendChild(option);
+    }
+
 
   }
 
