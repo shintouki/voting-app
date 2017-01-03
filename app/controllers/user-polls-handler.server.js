@@ -2,9 +2,9 @@
 
 var Users = require('../models/users.js');
 var Polls = require('../models/polls.js');
-var path = process.cwd();
+// var path = process.cwd();
 
-function createPollId () {
+function createPollId() {
     var charArr = [];
     var charChoices = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     var lenOfId = 10;
@@ -15,23 +15,20 @@ function createPollId () {
     return charArr.join('');
 }
 
-function UserPollsHandler () {
+function UserPollsHandler() {
 
-	this.getPolls = function (req, res) {
+	this.getPolls = function(req, res) {
 		Users
 			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
 			.exec(function (err, result) {
 				if (err) { throw err; }
-
 				if (result) {
 					res.json(result.userPolls);
-				}
-
-				
+				}				
 			});
 	};
 
-	this.addPoll = function (req, res) {
+	this.addPoll = function(req, res) {
 		var optionsString = req.body.pollOptions;
 		var optionsArr = optionsString.split("\r\n");
 
@@ -50,7 +47,6 @@ function UserPollsHandler () {
 			optionObjectArr.push(currOption);
 		}
 		var pollId = createPollId();
-		// console.log(pollId);
 
 		Users
 			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
