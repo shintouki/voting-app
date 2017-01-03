@@ -15,6 +15,7 @@ function createPollId() {
 }
 
 function AllPollsHandler() {
+  
   this.getPolls = function (req, res) {
     Polls
       .find()
@@ -25,6 +26,7 @@ function AllPollsHandler() {
         }
       });
   };
+
 }
 
 

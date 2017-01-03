@@ -16,7 +16,7 @@ function createPollId() {
 }
 
 function UserPollsHandler() {
-
+	
 	this.getPolls = function(req, res) {
 		Users
 			.findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
