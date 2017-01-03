@@ -3,6 +3,17 @@
 var Users = require('../models/users.js');
 var path = process.cwd();
 
+function createPollId () {
+    var charArr = [];
+    var charChoices = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var lenOfId = 10;
+    for (var i=0; i<lenOfId; i++) {
+    	charArr.push(charChoices.charAt(Math.floor(Math.random() * charChoices.length)));
+    }
+
+    return charArr.join('');
+}
+
 function UserPollsHandler () {
 
 	this.getPolls = function (req, res) {
@@ -32,11 +43,13 @@ function UserPollsHandler () {
 		for (var i=0; i<optionsArr.length; i++) {
 			var currOption = {
 				optionKey: i,
-                optionText: optionsArr[1],
+                optionText: optionsArr[i],
                 optionCount: 0
 			}
 			optionObjectArr.push(currOption);
 		}
+		var pollId = createPollId();
+		// console.log(pollId);
 
 		Users
 			.findOneAndUpdate({ 'twitter.id': req.user.twitter.id },
@@ -44,15 +57,15 @@ function UserPollsHandler () {
 					$push: {
 					    'userPolls.polls': {
 					            'title': req.body.pollTitle,
-					            'options': optionObjectArr
+					            'options': optionObjectArr,
+					            'pollId': pollId
 					    }
 					}
 				})
 			.exec(function (err, result) {
 					if (err) { throw err; }
 
-					// res.json(result.userPolls);
-					res.redirect('/polldetails', {});
+					res.redirect('/polldetails/' + pollId);
 				}
 			);
 	};

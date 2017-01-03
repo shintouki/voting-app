@@ -11,7 +11,7 @@
     for (var i=0; i<pollsArray.length; i++) {
       var title = pollsArray[i]['title'];
       var options = pollsArray[i]['options'];
-      var id = pollsArray[i]['_id'];
+      var id = pollsArray[i]['pollId'];
 
       var innerDiv = document.createElement('div');
       innerDiv.className = 'pollInnerDiv';

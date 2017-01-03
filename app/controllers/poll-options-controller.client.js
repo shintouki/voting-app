@@ -13,15 +13,17 @@
     // console.log(pollId);
     // Find right poll
     for (var i=0; i<pollsArray.length; i++) {
-      // console.log(pollsArray[i]);
-      if (pollsArray[i]['_id'] === pollId) {
+      console.log(pollsArray[i]);
+      if (pollsArray[i]['pollId'] === pollId) {
         pollObj = pollsArray[i];
         break;
       }
     }
-    // console.log(pollObj);
+    console.log(pollObj);
     var title = pollObj.title;
     pollTitle.innerHTML = title;
+    var options = pollObj.options;
+    console.log(options);
 
   }
 

@@ -12,6 +12,7 @@ var User = new Schema({
 	},
 	userPolls: {
 		polls: [{
+            pollId: String,
             title: String,
             options: [{
                 optionKey: Number,
