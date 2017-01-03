@@ -1,11 +1,10 @@
 'use strict';
 
 (function() {
-console.log("adsfasdfsafd");
   // var createPollButton = document.querySelector('#create-poll-btn');
   var userPollsDiv = document.querySelector('#user-polls');
   var apiUrl = appUrl + '/api/:id/polls';
-  console.log(appUrl);
+  // console.log(appUrl);
   function updateUserPolls(data) {
     var parsedData = JSON.parse(data);
     var pollsArray = parsedData['polls'];

@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 
 	var userPollsHandler = new UserPollsHandler();
 
-	app.route('/*')
+	app.route('*')
 		.get(function(req, res, next) {
 	  // Place user into res.locals for easy access from templates
 	  res.locals.user = req.user || null;
