@@ -4,7 +4,10 @@ html(lang="en")
     title Your Polls
     link(href='/public/css/main.css', rel='stylesheet', type='text/css')
   body 
-    include navigation-bar.pug
+    if (user) 
+      include nav-bar-logged-in.pug
+    else
+      include nav-bar-logged-out.pug
     .container
       p Your Polls
       #user-polls

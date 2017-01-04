@@ -3,19 +3,22 @@
 (function () {
   var pollTitle = document.querySelector('#poll-title');
   var pollOptions = document.querySelector('#poll-options');
-  var apiUrl = appUrl + '/api/:id/polls';
+  var apiUrl = appUrl + '/api/allpolls';
 
   function updatePollOptions (data) {
     var parsedData = JSON.parse(data);
-    var pollsArray = parsedData['polls'];
+    if (parsedData.length === 0) {
+      return;
+    }
+    // var pollsArray = parsedData['polls'];
     // var pollId = "{{pollid}}";
     var pollObj;
     // console.log(pollId);
     // Find right poll
-    for (var i=0; i<pollsArray.length; i++) {
+    for (var i=0; i<parsedData.length; i++) {
       // console.log(pollsArray[i]);
-      if (pollsArray[i]['pollId'] === pollId) {
-        pollObj = pollsArray[i];
+      if (parsedData[i]['pollId'] === pollId) {
+        pollObj = parsedData[i];
         break;
       }
     }

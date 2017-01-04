@@ -7,12 +7,12 @@
   // console.log(appUrl);
   function updateUserPolls(data) {
     var parsedData = JSON.parse(data);
-    var pollsArray = parsedData['polls'];
-    for (var i=0; i<pollsArray.length; i++) {
-      var title = pollsArray[i]['title'];
-      var options = pollsArray[i]['options'];
-      var id = pollsArray[i]['pollId'];
-
+    // var pollsArray = parsedData['polls'];
+    for (var i=0; i<parsedData.length; i++) {
+      var title = parsedData[i]['title'];
+      var options = parsedData[i]['options'];
+      var id = parsedData[i]['pollId'];
+      
       var innerDiv = document.createElement('div');
       innerDiv.className = 'pollInnerDiv';
 

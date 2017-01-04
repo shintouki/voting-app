@@ -4,7 +4,10 @@ html(lang="en")
     title Create New Poll
     link(href='/public/css/main.css', rel='stylesheet', type='text/css')
   body 
-    include navigation-bar.pug
+    if (user) 
+      include nav-bar-logged-in.pug
+    else
+      include nav-bar-logged-out.pug
     .container
       p Create a new poll
       form(action='/api/:id/polls', method='post')

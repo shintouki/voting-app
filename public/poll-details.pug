@@ -4,12 +4,9 @@ html(lang="en")
     title Poll Details
   body 
     if (user) 
-      include navigation-bar.pug
+      include nav-bar-logged-in.pug
     else
-      .login 
-        a(href='/auth/twitter', onclick="window.open('/auth/twitter', 'twitterWindow', 'width=500, height=650'); return false;")
-          #login-btn.btn
-            p Log in with Twitter
+      include nav-bar-logged-out.pug
     p Poll Details
     h1#poll-title
     #optionsData
