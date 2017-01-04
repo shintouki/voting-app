@@ -15,14 +15,22 @@ function createPollId() {
 }
 
 function AllPollsHandler() {
-  
+
   this.getPolls = function (req, res) {
     Polls
       .find()
       .exec(function (err, result) {
         if (err) { throw err; }
         if (result) {
-          res.json(result);
+          // console.log("result......");
+          // console.log(result);
+          var resultObj = {};
+          for (var i=0; i<result.length; i++) {
+            var pollId = result[i]['pollId'];
+            resultObj[pollId] = result[i];
+          }
+   
+          res.json(resultObj);
         }
       });
   };
