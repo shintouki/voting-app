@@ -6,24 +6,27 @@
   var apiUrl = appUrl + '/api/allpolls';
   function updateUserPolls(data) {
     var parsedData = JSON.parse(data);
-    for (var i=0; i<parsedData.length; i++) {
-      var title = parsedData[i]['title'];
-      var options = parsedData[i]['options'];
-      var id = parsedData[i]['pollId'];
-      
-      var innerDiv = document.createElement('div');
-      innerDiv.className = 'pollInnerDiv';
+    for (var key in parsedData) {
+      if (parsedData.hasOwnProperty(key)) {
+        var title = parsedData[key]['title'];
+        var options = parsedData[key]['options'];
+        var id = parsedData[key]['pollId'];
+        
+        var innerDiv = document.createElement('div');
+        innerDiv.className = 'pollInnerDiv';
 
-      var a = document.createElement('a');
-      a.href =  appUrl + '/polldetails/' + id;
-      a.innerHTML = title;
+        var a = document.createElement('a');
+        a.href =  appUrl + '/polldetails/' + id;
+        a.innerHTML = title;
 
-      innerDiv.appendChild(a);
+        innerDiv.appendChild(a);
 
-      userPollsDiv.appendChild(innerDiv);
+        userPollsDiv.appendChild(innerDiv);
+      }
     }
+
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
-  
+
 })();
