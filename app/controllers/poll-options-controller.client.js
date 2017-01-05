@@ -5,29 +5,27 @@
   var pollOptions = document.querySelector('#poll-options');
   var apiUrl = appUrl + '/api/allpolls';
 
-  function updatePollOptions (data) {
+  function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
+
+  function updatePollOptions(data) {
     var parsedData = JSON.parse(data);
-    if (parsedData.length === 0) {
+    if (isEmpty(parsedData)) {
       return;
     }
-    // var pollsArray = parsedData['polls'];
-    // var pollId = "{{pollid}}";
-    var pollObj;
-    // console.log(pollId);
-    // Find right poll
-    for (var i=0; i<parsedData.length; i++) {
-      // console.log(pollsArray[i]);
-      if (parsedData[i]['pollId'] === pollId) {
-        pollObj = parsedData[i];
-        break;
-      }
-    }
-    // console.log(pollObj);
+
+    var pollObj = parsedData[pollId];
+
     var title = pollObj.title;
     pollTitle.innerHTML = title;
     var options = pollObj.options;
     for (var i=0; i<options.length; i++) {
-      console.log(options[i]);
+      // console.log(options[i]);
       var optionText = options[i]['optionText'];
       var option = document.createElement('option');
       option.innerHTML = optionText;
