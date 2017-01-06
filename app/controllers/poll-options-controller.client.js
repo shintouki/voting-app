@@ -3,6 +3,8 @@
 (function () {
   var pollTitle = document.querySelector('#poll-title');
   var pollOptions = document.querySelector('#poll-options');
+  var deletePollButton = document.querySelector('#delete-button');
+
   var apiUrl = appUrl + '/api/allpolls';
 
   function isEmpty(obj) {
@@ -36,5 +38,13 @@
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
+
+  deletePollButton.addEventListener('click', function () {
+    var params = {"pollId": pollId};
+    ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrl, params, function () {
+         
+      });
+
+  }, false);
 
 })();

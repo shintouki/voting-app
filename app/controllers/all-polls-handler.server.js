@@ -35,6 +35,10 @@ function AllPollsHandler() {
       });
   };
 
+  this.deletePoll = function(req, res) {
+    console.log(req.params);
+  };
+
 }
 
 

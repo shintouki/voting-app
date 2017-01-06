@@ -27,6 +27,7 @@ module.exports = function (app, passport) {
 
 	app.route('/polls')
 		.get(function (req, res) {
+			// console.log(res);
 			res.render('polls');
 		});
 
@@ -58,7 +59,8 @@ module.exports = function (app, passport) {
 		});
 
 	app.route('/api/allpolls')
-		.get(allPollsHandler.getPolls);
+		.get(allPollsHandler.getPolls)
+		.delete(isLoggedIn, allPollsHandler.deletePoll);
 
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
