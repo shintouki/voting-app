@@ -35,12 +35,12 @@ var ajaxFunctions = {
       };
 
       xmlhttp.open(method, url, true);
-
-      params = JSON.stringify(params);
+      // console.log(params);
+      var params = JSON.stringify(params);
       xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
-      xmlhttp.setRequestHeader("Content-length", params.length);
-      xmlhttp.setRequestHeader("Connection", "close");
-
+      // xmlhttp.setRequestHeader("Content-length", params.length);
+      // xmlhttp.setRequestHeader("Connection", "close");
+      // console.log(params);
       xmlhttp.send(params);
    }
 };

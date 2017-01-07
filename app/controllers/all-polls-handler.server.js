@@ -36,7 +36,38 @@ function AllPollsHandler() {
   };
 
   this.deletePoll = function(req, res) {
-    console.log(req.params);
+    // console.log(req.body);
+    var pollId = req.body.pollId;
+    // alert("Are you sure you want to delete this poll?");
+    
+    Users
+      .findOne({ 'twitter.id': req.user.twitter.id }, function (err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          var userPollsArr = doc.userPolls.pollIdList;
+          userPollsArr.splice(userPollsArr.indexOf(pollId), 1);
+          console.log(userPollsArr);
+          console.log(doc);
+          // doc.save();
+          doc.save(function(err) {
+            if (err) {
+              res.send(null, 500);
+            }
+          })
+        }
+      });
+
+    Polls
+      .findOneAndRemove({ 'pollId': pollId }, function (err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+      });
+
+
+    res.redirect('/polls');
   };
 
 }

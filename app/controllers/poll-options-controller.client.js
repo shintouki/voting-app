@@ -36,15 +36,17 @@
 
 
   }
-
+  
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
+  
+  if (user) {
+    deletePollButton.addEventListener('click', function () {
+      var params = {"pollId": pollId};
+      ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrl, params, function () {
+           
+        });
 
-  deletePollButton.addEventListener('click', function () {
-    var params = {"pollId": pollId};
-    ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrl, params, function () {
-         
-      });
-
-  }, false);
+    }, false);
+  }
 
 })();

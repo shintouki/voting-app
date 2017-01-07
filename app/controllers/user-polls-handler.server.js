@@ -56,7 +56,9 @@ function UserPollsHandler() {
 					}
 				})
 			.exec(function (err, result) {
-					if (err) { throw err; }
+					if (err) {
+						res.send(null, 500);
+					}
 				}
 			);
 
