@@ -80,7 +80,7 @@ module.exports = function (app, passport) {
 		.post(isLoggedIn, pollHandler.addPoll);
 
 	app.route('/deletepoll')
-		.post(isLoggedIn, pollHandler.deletePoll);
+		.delete(isLoggedIn, pollHandler.deletePoll);
 
 	app.route('/api/allpolls')
 		.get(pollHandler.getAllPolls);

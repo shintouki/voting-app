@@ -2,6 +2,7 @@
 
 var Polls = require('../models/polls.js');
 var Users = require('../models/users.js');
+var appUrl = process.env.APP_URL
 
 function createPollId() {
     var charArr = [];
@@ -84,7 +85,7 @@ function PollHandler() {
           if (err) {
             res.send(null, 500);
           }
-          console.log(result.userPolls);
+          // console.log(result.userPolls);
           // res.json(result.userPolls)
         }
       );
@@ -94,7 +95,8 @@ function PollHandler() {
   };
 
   this.deletePoll = function(req, res) {
-    // console.log(req.body);
+    console.log("printing req.body in deletepoll....");
+    console.log(req.body);
     var pollId = req.body.pollId;
     // alert("Are you sure you want to delete this poll?");
     
@@ -125,8 +127,11 @@ function PollHandler() {
       });
 
     // console.log("right before redirect");
-    // res.redirect('/polls/');
-    res.send("hello");
+    // res.redirect('/polls');
+    // res.send("hello");
+    // console.log(res);
+    req.method = 'GET'
+    // res.redirect('/polls');
   };
 
 }

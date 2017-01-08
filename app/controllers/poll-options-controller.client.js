@@ -6,6 +6,7 @@
   var deletePollButton = document.querySelector('#delete-button');
 
   var apiUrl = appUrl + '/api/allpolls';
+  var apiUrlDeletePoll = appUrl + '/deletepoll';
 
   function isEmpty(obj) {
     for(var key in obj) {
@@ -42,10 +43,13 @@
   if (user) {
     deletePollButton.addEventListener('click', function () {
       var params = {"pollId": pollId};
-      ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrl, params, function () {
+      ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrlDeletePoll, params, function () {
            
       });
 
+    // I was getting an error with res.redirect('polls') in pollHandler so
+    // I am using this instead for now.
+    window.location.href = '/polls';
     }, false);
   }
 
