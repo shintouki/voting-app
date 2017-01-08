@@ -1,4 +1,4 @@
-Clementine.js
+Voting App
 Copyright (c) 2016 by Ted 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
