@@ -44,12 +44,7 @@ module.exports = function (passport) {
 
 					newUser.twitter.id = profile.id;
 					newUser.twitter.displayName = profile.displayName;
-					newUser.userPolls.polls = [];
-
-					// newUser.twitter.username = profile.username;
-					// newUser.twitter.displayName = profile.displayName;
-					// newUser.twitter.publicRepos = profile._json.public_repos;
-					// newUser.nbrClicks.clicks = 0;
+					newUser.userPolls.pollIdList = [];
 
 					newUser.save(function (err) {
 						if (err) {

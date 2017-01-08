@@ -69,9 +69,10 @@ function PollHandler() {
     Polls
       .create(
         {
+          'userId': req.user.twitter.id,
+          'pollId': pollId,
           'title': req.body.pollTitle,
-          'options': optionObjectArr,
-          'pollId': pollId
+          'options': optionObjectArr
         });
 
     Users
@@ -130,7 +131,7 @@ function PollHandler() {
     // res.redirect('/polls');
     // res.send("hello");
     // console.log(res);
-    req.method = 'GET'
+    // req.method = 'GET'
     // res.redirect('/polls');
   };
 

@@ -14,8 +14,7 @@ html(lang="en")
       label I would like to vote for:
       select#poll-options(name='choices')
       input(type='submit')
-    if (user)
-      button#delete-button Delete Poll
+    button#delete-button(style='visibility:hidden') Delete Poll
     script(type='text/javascript', src='/common/ajax-functions.js')
     if (user)
       script(type='text/javascript', src='/controllers/userController.client.js')

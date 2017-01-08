@@ -22,6 +22,7 @@
       return;
     }
 
+    // Create poll options html
     var pollObj = parsedData[pollId];
 
     var title = pollObj.title;
@@ -35,6 +36,17 @@
       pollOptions.appendChild(option);
     }
 
+    // Show Delete Button if poll's userId matches current logged in userId
+    // console.log(user);
+    if (user) {
+      var pollUserId = pollObj.userId;
+      var currentUserId = user.twitter.id;
+      // console.log("pollUserId: " + pollUserId);
+      // console.log("currentUserId: " + currentUserId);
+      if (pollUserId === currentUserId) {
+        deletePollButton.style.visibility = 'visible';
+      }
+    }
 
   }
 

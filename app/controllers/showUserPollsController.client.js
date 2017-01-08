@@ -37,22 +37,5 @@
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, updateUserPolls));
-  // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, asdf));
-
-  // createPollButton.addEventListener('click', function () {
-
-  //    ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-  //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-  //    });
-
-  // }, false);
-
-  // deleteButton.addEventListener('click', function () {
-
-  //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-  //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-  //    });
-
-  // }, false);
 
 })();

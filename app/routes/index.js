@@ -38,9 +38,12 @@ module.exports = function (app, passport) {
 
 	app.route('/polldetails/:pollid')
 		.get(function (req, res) {
-			var currpollid = req.params.pollid;
+			var pollid = req.params.pollid;
+			// var userid = req.params.userId;
+			// console.log("userId.... " + userid);
+
 			var data = {
-				pollid: currpollid
+				pollid: pollid
 			}
 
 			res.render('poll-details', data);
