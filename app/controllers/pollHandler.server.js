@@ -96,22 +96,20 @@ function PollHandler() {
   };
 
   this.deletePoll = function(req, res) {
-    console.log("printing req.body in deletepoll....");
-    console.log(req.body);
+    // console.log("printing req.body in deletepoll....");
+    // console.log(req.body);
     var pollId = req.body.pollId;
     // alert("Are you sure you want to delete this poll?");
     
     Users
-      .findOne({ 'twitter.id': req.user.twitter.id }, function (err, doc) {
+      .findOne({ 'twitter.id': req.user.twitter.id }, function(err, doc) {
         if (err) {
           res.send(null, 500);
         }
         else if (doc) {
           var userPollsArr = doc.userPolls.pollIdList;
           userPollsArr.splice(userPollsArr.indexOf(pollId), 1);
-          // console.log(userPollsArr);
-          // console.log(doc);
-          // doc.save();
+
           doc.save(function(err, doc) {
             if (err) {
               res.send(null, 500);
@@ -121,18 +119,48 @@ function PollHandler() {
       });
 
     Polls
-      .findOneAndRemove({ 'pollId': pollId }, function (err, doc) {
+      .findOneAndRemove({ 'pollId': pollId }, function(err, doc) {
         if (err) {
           res.send(null, 500);
         }
       });
 
-    // console.log("right before redirect");
-    // res.redirect('/polls');
-    // res.send("hello");
-    // console.log(res);
-    // req.method = 'GET'
-    // res.redirect('/polls');
+  };
+
+  this.votePoll = function(req, res) {
+    var choice = req.body.choice;
+    var pollId = req.query.pollid;
+    console.log(choice);
+    console.log("pollId: " + pollId);
+
+    Polls
+      .findOne({ 'pollId': pollId }, function(err, doc) {
+        if (err) {
+          res.send(null, 500);
+        }
+        else if (doc) {
+          var options = doc.options;
+          for (var i=0; i<options.length; i++) {
+            console.log("####");
+            console.log("optionText: " + options[i].optionText);
+            console.log("choice: " + choice);
+            console.log("####");
+            if (options[i].optionText == choice) {
+              console.log("incre count");
+              options[i].optionCount++;
+            }
+          }
+          console.log(options);
+
+          doc.save(function(err, doc) {
+            if (err) {
+              res.send(null, 500);
+            }
+          })
+          
+        }
+      });
+
   };
 
 }

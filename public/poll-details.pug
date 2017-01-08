@@ -10,9 +10,9 @@ html(lang="en")
     p Poll Details
     h1#poll-title
     #optionsData
-    form(action='', method='post')
+    form(action='/vote?pollid=' + pollid, method='post')
       label I would like to vote for:
-      select#poll-options(name='choices')
+      select#poll-options(name='choice[]')
       input(type='submit')
     button#delete-button(style='visibility:hidden') Delete Poll
     script(type='text/javascript', src='/common/ajax-functions.js')

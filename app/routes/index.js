@@ -85,6 +85,9 @@ module.exports = function (app, passport) {
 	app.route('/deletepoll')
 		.delete(isLoggedIn, pollHandler.deletePoll);
 
+	app.route('/vote')
+		.post(pollHandler.votePoll);
+
 	app.route('/api/allpolls')
 		.get(pollHandler.getAllPolls);
 		// .post(isLoggedIn, allPollsHandler.addPoll)
@@ -104,7 +107,5 @@ module.exports = function (app, passport) {
 		.get(function (req, res) {
 			res.redirect('/polls');
 		});
-
-
 
 };
