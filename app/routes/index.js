@@ -1,9 +1,11 @@
 'use strict';
 
 var path = process.cwd();
-var UserPollsHandler = require(path + '/app/controllers/user-polls-handler.server.js');
-var AllPollsHandler = require(path + '/app/controllers/all-polls-handler.server.js');
-var AddPollHandler = require(path + '/app/controllers/add-poll-handler.server.js');
+// var UserPollsHandler = require(path + '/app/controllers/user-polls-handler.server.js');
+// var AllPollsHandler = require(path + '/app/controllers/all-polls-handler.server.js');
+// var AddPollHandler = require(path + '/app/controllers/add-poll-handler.server.js');
+var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
+
 
 module.exports = function (app, passport) {
 
@@ -16,9 +18,10 @@ module.exports = function (app, passport) {
 		}
 	}
 
-	var userPollsHandler = new UserPollsHandler();
-	var allPollsHandler = new AllPollsHandler();
-	var addPollHandler = new AddPollHandler();
+	// var userPollsHandler = new UserPollsHandler();
+	// var allPollsHandler = new AllPollsHandler();
+	// var addPollHandler = new AddPollHandler();
+	var pollHandler = new PollHandler();
 
 	app.route('*')
 		.get(function(req, res, next) {
@@ -74,10 +77,13 @@ module.exports = function (app, passport) {
 		});
 
 	app.route('/addpoll')
-		.post(isLoggedIn, addPollHandler.addPoll);
+		.post(isLoggedIn, pollHandler.addPoll);
+
+	app.route('/deletepoll')
+		.post(isLoggedIn, pollHandler.deletePoll);
 
 	app.route('/api/allpolls')
-		.get(allPollsHandler.getPolls);
+		.get(pollHandler.getAllPolls);
 		// .post(isLoggedIn, allPollsHandler.addPoll)
 		// .delete(isLoggedIn, allPollsHandler.deletePoll);
 
@@ -87,7 +93,7 @@ module.exports = function (app, passport) {
 		});
 
 	app.route('/api/:id/polls')
-		.get(isLoggedIn, userPollsHandler.getPolls);
+		.get(isLoggedIn, pollHandler.getUserPollIds);
 		// .post(isLoggedIn, userPollsHandler.addPoll)
 		// .delete(isLoggedIn, userPollsHandler.deletePoll);
 
