@@ -61,6 +61,7 @@
          
         });
       
+        alert("The poll was successfully deleted.")
         // I was getting an error with res.redirect('polls') in pollHandler so
         // I am using this instead for now.
         window.location.href = '/polls';
