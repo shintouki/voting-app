@@ -54,15 +54,20 @@
   
   if (user) {
     deletePollButton.addEventListener('click', function () {
-      var params = {"pollId": pollId};
-      ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrlDeletePoll, params, function () {
-           
-      });
-
-    // I was getting an error with res.redirect('polls') in pollHandler so
-    // I am using this instead for now.
-    window.location.href = '/polls';
+      var confirmed = confirm("Are you sure you want to delete this poll?");
+      if (confirmed) {
+        var params = { "pollId": pollId };
+        ajaxFunctions.ajaxRequestWithParams('DELETE', apiUrlDeletePoll, params, function () {
+         
+        });
+      
+        // I was getting an error with res.redirect('polls') in pollHandler so
+        // I am using this instead for now.
+        window.location.href = '/polls';
+      }    
     }, false);
+    
   }
+  
 
 })();

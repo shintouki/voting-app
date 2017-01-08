@@ -141,16 +141,16 @@ function PollHandler() {
         else if (doc) {
           var options = doc.options;
           for (var i=0; i<options.length; i++) {
-            console.log("####");
-            console.log("optionText: " + options[i].optionText);
-            console.log("choice: " + choice);
-            console.log("####");
+            // console.log("####");
+            // console.log("optionText: " + options[i].optionText);
+            // console.log("choice: " + choice);
+            // console.log("####");
             if (options[i].optionText == choice) {
-              console.log("incre count");
+              // console.log("incre count");
               options[i].optionCount++;
             }
           }
-          console.log(options);
+          // console.log(options);
 
           doc.save(function(err, doc) {
             if (err) {
