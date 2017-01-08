@@ -10,7 +10,7 @@ html(lang="en")
       include nav-bar-logged-out.pug
     .container
       p Create a new poll
-      form(action='/api/:id/polls', method='post')
+      form(action = '/addpoll' method='post')
         div
           label(for='title') Title:
           input#title(type='text', name='pollTitle')
@@ -18,6 +18,9 @@ html(lang="en")
           label(for='options') Options (Separate with lines):
           textarea#options(name='pollOptions')
         .button
-          button#create-pol-btn(type='submit') Create Poll
+          button#create-poll-btn(type='submit') Create Poll
+    script.
+      var user= !{JSON.stringify(user)}
     script(type='text/javascript', src='/common/ajax-functions.js')
     script(type='text/javascript', src='/controllers/user-controller.client.js')
+    script(type='text/javascript', src='/controllers/create-poll-controller.client.js')

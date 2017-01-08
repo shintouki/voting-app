@@ -3,6 +3,7 @@
 var path = process.cwd();
 var UserPollsHandler = require(path + '/app/controllers/user-polls-handler.server.js');
 var AllPollsHandler = require(path + '/app/controllers/all-polls-handler.server.js');
+var AddPollHandler = require(path + '/app/controllers/add-poll-handler.server.js');
 
 module.exports = function (app, passport) {
 
@@ -17,6 +18,7 @@ module.exports = function (app, passport) {
 
 	var userPollsHandler = new UserPollsHandler();
 	var allPollsHandler = new AllPollsHandler();
+	var addPollHandler = new AddPollHandler();
 
 	app.route('*')
 		.get(function(req, res, next) {
@@ -57,15 +59,6 @@ module.exports = function (app, passport) {
 			res.render('new-poll');
 		});
 
-	app.route('/api/allpolls')
-		.get(allPollsHandler.getPolls)
-		.delete(isLoggedIn, allPollsHandler.deletePoll);
-
-	app.route('/api/:id')
-		.get(isLoggedIn, function (req, res) {
-			res.json(req.user.twitter);
-		});
-
 	app.route('/auth/twitter')
 		.get(passport.authenticate('twitter'));
 
@@ -80,10 +73,23 @@ module.exports = function (app, passport) {
 			res.render('after-twitter-auth');
 		});
 
+	app.route('/addpoll')
+		.post(isLoggedIn, addPollHandler.addPoll);
+
+	app.route('/api/allpolls')
+		.get(allPollsHandler.getPolls);
+		// .post(isLoggedIn, allPollsHandler.addPoll)
+		// .delete(isLoggedIn, allPollsHandler.deletePoll);
+
+	app.route('/api/:id')
+		.get(isLoggedIn, function (req, res) {
+			res.json(req.user.twitter);
+		});
+
 	app.route('/api/:id/polls')
-		.get(isLoggedIn, userPollsHandler.getPolls)
-		.post(isLoggedIn, userPollsHandler.addPoll);
-		// .delete(isLoggedIn, clickHandler.deletePoll);
+		.get(isLoggedIn, userPollsHandler.getPolls);
+		// .post(isLoggedIn, userPollsHandler.addPoll)
+		// .delete(isLoggedIn, userPollsHandler.deletePoll);
 
 	app.route('*')
 		.get(function (req, res) {

@@ -1,4 +1,6 @@
 script(type='text/javascript').
+  var appUrl = window.location.origin;
+
   if (window.opener) {
       window.opener.focus();
 
@@ -7,5 +9,5 @@ script(type='text/javascript').
     // }
   }
 
-  window.opener.location = "http://127.0.0.1:8080/polls"
+  window.opener.location = appUrl + '/polls';
   window.close();

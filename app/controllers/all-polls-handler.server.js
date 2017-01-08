@@ -1,6 +1,5 @@
 'use strict';
 
-var Users = require('../models/users.js');
 var Polls = require('../models/polls.js');
 
 function createPollId() {
@@ -48,10 +47,10 @@ function AllPollsHandler() {
         else if (doc) {
           var userPollsArr = doc.userPolls.pollIdList;
           userPollsArr.splice(userPollsArr.indexOf(pollId), 1);
-          console.log(userPollsArr);
-          console.log(doc);
+          // console.log(userPollsArr);
+          // console.log(doc);
           // doc.save();
-          doc.save(function(err) {
+          doc.save(function(err, doc) {
             if (err) {
               res.send(null, 500);
             }
@@ -66,8 +65,9 @@ function AllPollsHandler() {
         }
       });
 
-
-    res.redirect('/polls');
+    // console.log("right before redirect");
+    // res.redirect('/polls/');
+    res.send("hello");
   };
 
 }

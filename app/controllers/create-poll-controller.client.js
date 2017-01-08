@@ -1,32 +1,41 @@
 'use strict';
-
+var appUrl = window.location.origin;
 (function () {
 
    var createPollButton = document.querySelector('#create-poll-btn');
-   var apiUrl = appUrl + '/api/:id/polls';
+   var apiUrlUserPollIds = appUrl + '/api/:id/polls';
+   var apiUrlAllPolls = appUrl + '/api/allpolls';
+   console.log(apiUrlUserPollIds);
+   console.log(apiUrlAllPolls);
 
-   // function updateUserPolls (data) {
-   //    var pollsObject = JSON.parse(data);
-         
-   //    }
-   // }
+   function createPollId() {
+       var charArr = [];
+       var charChoices = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+       var lenOfId = 10;
+       for (var i=0; i<lenOfId; i++) {
+         charArr.push(charChoices.charAt(Math.floor(Math.random() * charChoices.length)));
+       }
 
-   // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
+       return charArr.join('');
+   }
 
-   // createPollButton.addEventListener('click', function () {
+   if (user) {
+    createPollButton.addEventListener('submit', function (evt) {
+      evt.preventDefault();
 
-   //    ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-   //    });
+      var pollId = createPollId();
+      var params = {"pollId": pollId};
 
-   // }, false);
+      ajaxFunctions.ajaxRequestWithParams('POST', apiUrlUserPollIds, params, function () {
+         ajaxFunctions.ajaxRequestWithParams('POST', apiUrlAllPolls, params, function () {
+           console.log(appUrl); 
+           
+         });
+      });
 
-   // deleteButton.addEventListener('click', function () {
-
-   //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls);
-   //    });
-
-   // }, false);
+      window.location.href = appUrl + '/polldetails/' + pollId;
+      
+    }, false);
+  }
 
 })();

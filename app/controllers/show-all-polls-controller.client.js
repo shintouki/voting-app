@@ -4,7 +4,8 @@
   
   var userPollsDiv = document.querySelector('#all-polls');
   var apiUrl = appUrl + '/api/allpolls';
-  function updateUserPolls(data) {
+
+  function displayAllPolls(data) {
     var parsedData = JSON.parse(data);
     for (var key in parsedData) {
       if (parsedData.hasOwnProperty(key)) {
@@ -27,6 +28,6 @@
 
   }
 
-  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateUserPolls));
+  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, displayAllPolls));
 
 })();
