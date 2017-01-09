@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  // var pageTitle = document.querySelector('title');
   var pollTitle = document.querySelector('#poll-title');
   var voteForm = document.querySelector('#vote-form');
   // var pollOptions = document.querySelector('#poll-options');
@@ -20,7 +21,7 @@
     }
     return true;
   }
-
+  // console.log(pageTitle);
   function populatePollOptions(data) {
     var parsedData = JSON.parse(data);
     if (isEmpty(parsedData)) {
@@ -29,8 +30,13 @@
 
     var pollObj = parsedData[pollId];
     var title = pollObj.title;
-    pollTitle.innerHTML = title;
     var options = pollObj.options;
+
+    // Set poll title
+    pollTitle.innerHTML = title;
+    // Change page title to title of poll
+    document.title = title;    
+
     for (var i=0; i<options.length; i++) {
       // console.log(options[i]);
       var optionText = options[i]['optionText'];

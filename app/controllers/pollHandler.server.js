@@ -134,7 +134,7 @@ function PollHandler() {
   this.votePoll = function(req, res) {
     var choice = req.body.choice;
     var pollId = req.query.pollid;
-    console.log("beginning of votePoll handler. choice is: " + choice);
+    // console.log("beginning of votePoll handler. choice is: " + choice);
     // console.log("pollId: " + pollId);
 
     Polls
@@ -180,7 +180,7 @@ function PollHandler() {
       });
 
     // res.redirect('/polls');
-    // res.redirect('/polldetails/' + pollId);
+    res.redirect('/polldetails/' + pollId);
   };
 
 }
