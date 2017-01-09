@@ -51,12 +51,16 @@ function PollHandler() {
     var optionsArr = optionsString.split("\r\n");
 
     // If there is a newline at the very end, delete this from the array.
-    if (optionsArr[optionsArr.length - 1] === "") {
-      optionsArr = optionsArr.slice(0, optionsArr.length-1);
-    }
+    // if (optionsArr[optionsArr.length - 1] === "") {
+    //   optionsArr = optionsArr.slice(0, optionsArr.length-1);
+    // }
     
     var optionObjectArr = [];
     for (var i=0; i<optionsArr.length; i++) {
+      if (optionsArr[i] === "") {
+        continue;
+      }
+      
       var currOption = {
         optionKey: i,
                 optionText: optionsArr[i],
@@ -157,7 +161,7 @@ function PollHandler() {
               res.send(null, 500);
             }
           })
-          
+
         }
       });
 
