@@ -10,11 +10,13 @@ html(lang="en")
     p Poll Details
     h1#poll-title
     #optionsData
-    form(action='/vote?pollid=' + pollid, method='post', onSubmit='alert("You have voted for: " + choice.value)')
+    form#vote-form(action='/vote?pollid=' + pollid, method='post')
       label I would like to vote for:
       select#poll-options(name='choice')
         option(selected, disabled, hidden) Choose an option
-      input#custom-option(type='text', name='choice', style='display:none', disabled)
+      div#custom-option(style='display:none')
+        label(for='custom-option-input') Custom Option:
+        input#custom-option-input(type='text', name='choice', disabled)
       input(type='submit', value="Submit")
     button#delete-button(style='visibility:hidden') Delete Poll
     script.

@@ -2,12 +2,14 @@
 
 (function () {
   var pollTitle = document.querySelector('#poll-title');
-  var pollOptions = document.querySelector('#poll-options');
-  var deletePollButton = document.querySelector('#delete-button');
+  var voteForm = document.querySelector('#vote-form');
+  // var pollOptions = document.querySelector('#poll-options');
   var selectField = document.querySelector("#poll-options");
-  var customOptionButton = document.querySelector("#custom-option");
+  var customOptionDiv = document.querySelector("#custom-option");
+  var customOptionInput = document.querySelector("#custom-option-input");
+  var deletePollButton = document.querySelector('#delete-button');
   // console.log(selectField);
-  var apiUrl = appUrl + '/api/allpolls';
+  var apiUrlAllPolls = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
 
   function isEmpty(obj) {
@@ -18,15 +20,13 @@
     return true;
   }
 
-  function updatePollOptions(data) {
+  function populatePollOptions(data) {
     var parsedData = JSON.parse(data);
     if (isEmpty(parsedData)) {
       return;
     }
 
-    // Create poll options html
     var pollObj = parsedData[pollId];
-
     var title = pollObj.title;
     pollTitle.innerHTML = title;
     var options = pollObj.options;
@@ -35,7 +35,7 @@
       var optionText = options[i]['optionText'];
       var option = document.createElement('option');
       option.innerHTML = optionText;
-      pollOptions.appendChild(option);
+      selectField.appendChild(option);
     }
 
     if (user) {
@@ -44,7 +44,7 @@
       var option = document.createElement('option');
       option.innerHTML = optionText;
       option.value = 'customOption';
-      pollOptions.appendChild(option);
+      selectField.appendChild(option);
 
       var pollUserId = pollObj.userId;
       var currentUserId = user.twitter.id;
@@ -58,22 +58,66 @@
 
   }
 
-  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
+  function showPollData(data) {
+    var parsedData = JSON.parse(data);
+    if (isEmpty(parsedData)) {
+      return;
+    }
+    
+
+  }
+
+  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, populatePollOptions));
+
+  voteForm.addEventListener('submit', function() {
+    console.log("qq");
+    // console.log(this);
+    console.log(selectField.options);
+    console.log(selectField.selectedIndex);
+    console.log(customOptionInput.value);
+    
+    if (selectField.selectedIndex === 0) {
+      // If first option, it is not a valid option so don't submit
+      alert("Please select an option.");
+      return false;
+    }
+    else if (selectField.selectedIndex === selectField.options.length - 1) {
+      // If last option, make custom option, is selected, remove the select
+      // elements when submitting form
+
+      // Custom input field is empty, send alert and don't submit
+      if (customOptionInput.value === "") {
+        alert("Please enter a custom option.")
+        return false;
+      }
+      // Remove select field if user enters a custom option
+      selectField.remove();
+    }
+    else {
+      // User chose one of the original options, so remove custom input field
+      customOptionInput.remove();
+    }
+
+    alert("You have voted for: " + this.choice.value);
+    setTimeout(function () { window.location.reload(); }, 10)
+
+  });
 
   if (user) {
     selectField.addEventListener('change', function() {
       // If create new option is selected
       // console.log(this.options[this.selectedIndex].value);
+      console.log(this.options);
       if (this.options[this.selectedIndex].value == 'customOption') {
         // Show custom option input field
-        customOptionButton.disabled = false;
-        customOptionButton.style.display = 'inline';
-        customOptionButton.focus();
+        customOptionDiv.style.display = 'inline';
+        customOptionInput.disabled = false;
+        customOptionInput.focus();
       }
       else {
         // Hide custom option input field
-        customOptionButton.disabled = true;
-        customOptionButton.style.display = 'none';
+        customOptionDiv.style.display = 'none';
+        customOptionInput.disabled = true;
       }
     }, false);
 

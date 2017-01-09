@@ -60,7 +60,7 @@ function PollHandler() {
       if (optionsArr[i] === "") {
         continue;
       }
-      
+
       var currOption = {
         optionKey: i,
                 optionText: optionsArr[i],
@@ -134,8 +134,8 @@ function PollHandler() {
   this.votePoll = function(req, res) {
     var choice = req.body.choice;
     var pollId = req.query.pollid;
-    console.log(choice);
-    console.log("pollId: " + pollId);
+    // console.log(choice);
+    // console.log("pollId: " + pollId);
 
     Polls
       .findOne({ 'pollId': pollId }, function(err, doc) {
@@ -165,6 +165,8 @@ function PollHandler() {
         }
       });
 
+    // res.redirect('/polls');
+    // res.redirect('/polldetails/' + pollId);
   };
 
 }
