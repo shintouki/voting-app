@@ -4,7 +4,9 @@
   var pollTitle = document.querySelector('#poll-title');
   var pollOptions = document.querySelector('#poll-options');
   var deletePollButton = document.querySelector('#delete-button');
-
+  var selectField = document.querySelector("#poll-options");
+  var customOptionButton = document.querySelector("#custom-option");
+  console.log(selectField);
   var apiUrl = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
 
@@ -35,24 +37,41 @@
       option.innerHTML = optionText;
       pollOptions.appendChild(option);
     }
+    // Add option for custom option
+    var optionText = "Create new option"
+    var option = document.createElement('option');
+    option.innerHTML = optionText;
+    option.value = 'customOption';
+    pollOptions.appendChild(option);
 
-    // Show Delete Button if poll's userId matches current logged in userId
-    // console.log(user);
     if (user) {
       var pollUserId = pollObj.userId;
       var currentUserId = user.twitter.id;
-      // console.log("pollUserId: " + pollUserId);
-      // console.log("currentUserId: " + currentUserId);
+      
+      // Show Delete Button if poll's userId matches current logged in userId
       if (pollUserId === currentUserId) {
         deletePollButton.style.visibility = 'visible';
       }
+
+      // If user is logged in, allow user to create a custom option
+
     }
 
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
-  
-  if (typeof user !== 'undefined' && user) {
+
+  if (user) {
+
+    selectField.addEventListener('change', function() {
+      console.log("asdfasdf");
+      
+    }, false);
+
+    // customOptionButton.addEventListener('change', function() {
+
+    // }, false);
+
     deletePollButton.addEventListener('click', function () {
       var confirmed = confirm("Are you sure you want to delete this poll?");
       if (confirmed) {

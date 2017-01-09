@@ -14,14 +14,15 @@ html(lang="en")
       label I would like to vote for:
       select#poll-options(name='choice')
         option(selected, disabled, hidden) Choose an option
-      input(type='submit')
+      input#custom-option(type='text', name='choice', style='display:none', disabled)
+      input(type='submit', value="Submit")
     button#delete-button(style='visibility:hidden') Delete Poll
+    script.
+      var pollId= !{JSON.stringify(pollid)}
+      var user= !{JSON.stringify(user)}
     script(type='text/javascript', src='/common/ajax-functions.js')
     if (user)
       script(type='text/javascript', src='/controllers/userController.client.js')
     script(type='text/javascript', src='/controllers/pollOptionsController.client.js')
-    script.
-      var pollId= !{JSON.stringify(pollid)}
-      var user= !{JSON.stringify(user)}
     
-      
+    
