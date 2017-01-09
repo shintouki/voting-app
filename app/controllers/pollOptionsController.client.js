@@ -6,7 +6,7 @@
   var deletePollButton = document.querySelector('#delete-button');
   var selectField = document.querySelector("#poll-options");
   var customOptionButton = document.querySelector("#custom-option");
-  console.log(selectField);
+  // console.log(selectField);
   var apiUrl = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
 
@@ -37,14 +37,15 @@
       option.innerHTML = optionText;
       pollOptions.appendChild(option);
     }
-    // Add option for custom option
-    var optionText = "Create new option"
-    var option = document.createElement('option');
-    option.innerHTML = optionText;
-    option.value = 'customOption';
-    pollOptions.appendChild(option);
 
     if (user) {
+      // If user is logged in, allow user to create a custom option
+      var optionText = 'Create new option'
+      var option = document.createElement('option');
+      option.innerHTML = optionText;
+      option.value = 'customOption';
+      pollOptions.appendChild(option);
+
       var pollUserId = pollObj.userId;
       var currentUserId = user.twitter.id;
       
@@ -53,8 +54,6 @@
         deletePollButton.style.visibility = 'visible';
       }
 
-      // If user is logged in, allow user to create a custom option
-
     }
 
   }
@@ -62,10 +61,20 @@
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
 
   if (user) {
-
     selectField.addEventListener('change', function() {
-      console.log("asdfasdf");
-      
+      // If create new option is selected
+      // console.log(this.options[this.selectedIndex].value);
+      if (this.options[this.selectedIndex].value == 'customOption') {
+        // Show custom option input field
+        customOptionButton.disabled = false;
+        customOptionButton.style.display = 'inline';
+        customOptionButton.focus();
+      }
+      else {
+        // Hide custom option input field
+        customOptionButton.disabled = true;
+        customOptionButton.style.display = 'none';
+      }
     }, false);
 
     // customOptionButton.addEventListener('change', function() {
