@@ -52,7 +52,7 @@
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updatePollOptions));
   
-  if (user) {
+  if (typeof user !== 'undefined' && user) {
     deletePollButton.addEventListener('click', function () {
       var confirmed = confirm("Are you sure you want to delete this poll?");
       if (confirmed) {

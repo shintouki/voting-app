@@ -13,13 +13,15 @@ html(lang="en")
     form(action='/vote?pollid=' + pollid, method='post', onSubmit='alert("You have voted for: " + choice.value)')
       label I would like to vote for:
       select#poll-options(name='choice')
+        option(selected, disabled, hidden) Choose an option
       input(type='submit')
     button#delete-button(style='visibility:hidden') Delete Poll
     script(type='text/javascript', src='/common/ajax-functions.js')
     if (user)
       script(type='text/javascript', src='/controllers/userController.client.js')
+    script(type='text/javascript', src='/controllers/pollOptionsController.client.js')
     script.
       var pollId= !{JSON.stringify(pollid)}
       var user= !{JSON.stringify(user)}
-    script(type='text/javascript', src='/controllers/pollOptionsController.client.js')
+    
       
