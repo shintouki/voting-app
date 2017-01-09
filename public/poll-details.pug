@@ -19,6 +19,9 @@ html(lang="en")
         input#custom-option-input(type='text', name='choice', disabled)
       input(type='submit', value="Submit")
     button#delete-button(style='visibility:hidden') Delete Poll
+    div#poll-data
+      h1 Poll Data
+
     script.
       var pollId= !{JSON.stringify(pollid)}
       var user= !{JSON.stringify(user)}

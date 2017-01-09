@@ -8,6 +8,7 @@
   var customOptionDiv = document.querySelector("#custom-option");
   var customOptionInput = document.querySelector("#custom-option-input");
   var deletePollButton = document.querySelector('#delete-button');
+  var pollData = document.querySelector('#poll-data');
   // console.log(selectField);
   var apiUrlAllPolls = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
@@ -63,18 +64,33 @@
     if (isEmpty(parsedData)) {
       return;
     }
-    
+    var options = parsedData[pollId].options;
+    console.log(options);
+    for (var i=0; i<options.length; i++) {
+      var option = options[i];
+      
+      var optionDataDiv = document.createElement('div');
+      var pText = document.createElement('p');
+      var pCount = document.createElement('p');
+
+      pText.innerHTML = option.optionText + ": " + option.optionCount;
+      optionDataDiv.appendChild(pText);
+      pollData.appendChild(optionDataDiv);
+    }
+
 
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, populatePollOptions));
+  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, showPollData));
+
 
   voteForm.addEventListener('submit', function() {
-    console.log("qq");
+    // console.log("qq");
     // console.log(this);
-    console.log(selectField.options);
-    console.log(selectField.selectedIndex);
-    console.log(customOptionInput.value);
+    // console.log(selectField.options);
+    // console.log(selectField.selectedIndex);
+    // console.log(customOptionInput.value);
     
     if (selectField.selectedIndex === 0) {
       // If first option, it is not a valid option so don't submit
@@ -107,7 +123,7 @@
     selectField.addEventListener('change', function() {
       // If create new option is selected
       // console.log(this.options[this.selectedIndex].value);
-      console.log(this.options);
+      // console.log(this.options);
       if (this.options[this.selectedIndex].value == 'customOption') {
         // Show custom option input field
         customOptionDiv.style.display = 'inline';
