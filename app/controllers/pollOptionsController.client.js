@@ -65,7 +65,7 @@
       return;
     }
     var options = parsedData[pollId].options;
-    console.log(options);
+    // console.log(options);
     for (var i=0; i<options.length; i++) {
       var option = options[i];
       
@@ -115,7 +115,7 @@
     }
 
     alert("You have voted for: " + this.choice.value);
-    setTimeout(function () { window.location.reload(); }, 10)
+    // setTimeout(function () { window.location.reload(); }, 10)
 
   });
 

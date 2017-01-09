@@ -134,7 +134,7 @@ function PollHandler() {
   this.votePoll = function(req, res) {
     var choice = req.body.choice;
     var pollId = req.query.pollid;
-    // console.log(choice);
+    console.log("beginning of votePoll handler. choice is: " + choice);
     // console.log("pollId: " + pollId);
 
     Polls
@@ -144,6 +144,7 @@ function PollHandler() {
         }
         else if (doc) {
           var options = doc.options;
+          var choiceFound = false;
           for (var i=0; i<options.length; i++) {
             // console.log("####");
             // console.log("optionText: " + options[i].optionText);
@@ -152,7 +153,20 @@ function PollHandler() {
             if (options[i].optionText == choice) {
               // console.log("incre count");
               options[i].optionCount++;
+              choiceFound = true;
             }
+          }
+          // console.log("####");
+          // console.log(options);
+          if (!choiceFound) {
+            // Create new option if choice not found
+            console.log("choice not found");
+            var newOption = {
+              optionKey: options.length,
+                      optionText: choice,
+                      optionCount: 1
+            }
+            options.push(newOption);
           }
           // console.log(options);
 
