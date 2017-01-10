@@ -9,6 +9,7 @@
   var customOptionDiv = document.querySelector("#custom-option");
   var customOptionInput = document.querySelector("#custom-option-input");
   var deletePollButton = document.querySelector('#delete-button');
+  var twitterButton = document.querySelector('#twitter-button');
   var pollData = document.querySelector('#poll-data');
   // console.log(selectField);
   var apiUrlAllPolls = appUrl + '/api/allpolls';
@@ -147,7 +148,7 @@
 
     // }, false);
 
-    deletePollButton.addEventListener('click', function () {
+    deletePollButton.addEventListener('click', function() {
       var confirmed = confirm("Are you sure you want to delete this poll?");
       if (confirmed) {
         var params = { "pollId": pollId };
@@ -161,7 +162,25 @@
         window.location.href = '/polls';
       }    
     }, false);
-    
+
+    /* popupwindow function is from:
+     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen */
+    function popupwindow(url, title, w, h) {
+      // window.outerHeight is height of whole browser window in pixels
+      /* window.screenY is vertical distance of top border of browswer form top
+       * edge of screen in css pixels */
+      var y = window.outerHeight / 2 + window.screenY - (h / 2)
+      var x = window.outerWidth / 2 + window.screenX - (w / 2)
+      return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + y + ', left=' + x);
+    } 
+
+    twitterButton.addEventListener('click', function() {
+      var tweetUrl = 'https://twitter.com/intent/tweet?' + 'text=' + document.title +
+                     '&url=' + window.location.href + '&hashtags=poll,vote';
+      popupwindow(tweetUrl, 'tweetPoll', 500, 500);
+      // window.open(tweetUrl, 'tweetPoll', 'width=500, height=500');
+    }, false);
+
   }
   
 

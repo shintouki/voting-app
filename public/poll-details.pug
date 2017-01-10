@@ -21,7 +21,8 @@ html(lang="en")
     button#delete-button(style='visibility:hidden') Delete Poll
     div#poll-data
       h1 Poll Data
-
+    if (user)
+      button#twitter-button Share on Twitter
     script.
       var pollId= !{JSON.stringify(pollid)}
       var user= !{JSON.stringify(user)}
