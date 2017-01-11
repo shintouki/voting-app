@@ -20,6 +20,7 @@ html(lang="en")
           textarea#options(name='pollOptions')
         .button
           button#create-poll-btn(type='submit') Create Poll
+    include scripts.pug
     script.
       var user= !{JSON.stringify(user)}
     script(type='text/javascript', src='/common/ajax-functions.js')

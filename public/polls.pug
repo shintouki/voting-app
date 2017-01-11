@@ -14,9 +14,9 @@ html(lang="en")
       p Voting App
       p Select a poll to see voting results and vote.
       if (user)
-        p Log in with Twitter to create your own polls.
-      else
         p Create your own polls.
+      else
+        p Log in with Twitter to create your own polls.
       #all-polls.polls
     include scripts.pug
     script(type='text/javascript', src='/common/ajax-functions.js')

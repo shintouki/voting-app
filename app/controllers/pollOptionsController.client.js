@@ -177,7 +177,6 @@
       var tweetUrl = 'https://twitter.com/intent/tweet?' + 'text=' + document.title +
                      '&url=' + window.location.href + '&hashtags=poll,vote';
       popupWindow(tweetUrl, 'tweetPoll', 500, 500);
-      // window.open(tweetUrl, 'tweetPoll', 'width=500, height=500');
     }, false);
 
   }

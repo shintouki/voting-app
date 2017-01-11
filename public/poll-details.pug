@@ -25,6 +25,7 @@ html(lang="en")
       h1 Poll Data
     if (user)
       button#twitter-button Share on Twitter
+    include scripts.pug
     script.
       var pollId= !{JSON.stringify(pollid)}
       var user= !{JSON.stringify(user)}
