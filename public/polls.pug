@@ -1,8 +1,9 @@
 doctype html
 html(lang="en")
   head
+    meta(charset='utf-8')
     title Voting App
-    link(href='/public/css/main.css', rel='stylesheet', type='text/css')
+    link(href='/public/css/style.css', rel='stylesheet', type='text/css')
   body
     if (user) 
       include nav-bar-logged-in.pug
@@ -11,7 +12,10 @@ html(lang="en")
     .container
       p Voting App
       p Select a poll to see voting results and vote.
-      p Log in with Twitter to create and edit your own polls.
+      if (user)
+        p Log in with Twitter to create your own polls.
+      else
+        p Create your own polls.
       #all-polls.polls
     script(type='text/javascript', src='/common/ajax-functions.js')
     script(type='text/javascript', src='/controllers/showAllPollsController.client.js')
