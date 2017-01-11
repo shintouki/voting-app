@@ -1,1 +1,8 @@
-
+// Add padding to top so there is no overlap with nav bar
+body {
+  padding-top: 60px;
+}
+// No padding on top if on phone screen because gap is created on phone screens
+@media screen and (max-width: 768px) {
+    body { padding-top: 0px; }
+}
