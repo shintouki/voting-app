@@ -11,15 +11,16 @@ html(lang="en")
       include nav-bar-logged-in.pug
     else
       include nav-bar-logged-out.pug
-    .container
-      h4.text-center These are polls that you and other users have created.
-      h4.text-center Select a poll to see poll details and vote.
-      if (user)
-        a(href='/newpoll')
-          h4.text-center Or click on this text to create your own poll.
-      else
-        h4.text-center Log in with Twitter to create your own polls.
-      #all-polls.list-gropu
+    .container.panel.panel-default
+      .panel-body
+        h4.text-center These are polls that you and other users have created.
+        h4.text-center Select a poll to see poll details and vote.
+        if (user)
+          a(href='/newpoll')
+            h4.text-center Or click on this text to create your own poll.
+        else
+          h4.text-center Log in with Twitter to create your own polls.
+        #all-polls.list-group
     include jquery.pug
     include bootstrap-js.pug
     script(type='text/javascript', src='/common/ajax-functions.js')

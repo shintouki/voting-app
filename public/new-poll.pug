@@ -10,17 +10,18 @@ html(lang="en")
       include nav-bar-logged-in.pug
     else
       include nav-bar-logged-out.pug
-    .container
-      p Create a new poll
-      form(action = '/addpoll' method='post')
-        div
-          label(for='title') Title:
-          input#title(type='text', name='pollTitle')
-        div
-          label(for='options') Options (Separate with lines):
-          textarea#options(name='pollOptions')
-        .button
-          button#create-poll-btn(type='submit') Create Poll
+    .container.panel.panel-default
+      .panel-body
+        h2 Create a new poll here.
+        form(action = '/addpoll' method='post')
+          div
+            label(for='title') Title:
+            input#title(type='text', name='pollTitle')
+          div
+            label(for='options') Options (Separate with lines):
+            textarea#options(name='pollOptions')
+          .button
+            button#create-poll-btn(type='submit') Create Poll
     include jquery.pug
     include bootstrap-js.pug
     script.
