@@ -1,0 +1,14 @@
+#title {
+  width: 100%;
+  color: black;
+  margin-bottom: 1em;
+}
+
+#options {
+  @extend #title;
+  height: 10em;
+}
+
+#create-poll-btn {
+  color: black;
+}

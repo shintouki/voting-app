@@ -16,9 +16,11 @@ html(lang="en")
         form(action = '/addpoll' method='post')
           div
             label(for='title') Title:
+          div
             input#title(type='text', name='pollTitle')
           div
             label(for='options') Options (Separate with lines):
+          div
             textarea#options(name='pollOptions')
           .button
             button#create-poll-btn(type='submit') Create Poll

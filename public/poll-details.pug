@@ -12,21 +12,21 @@ html(lang="en")
       include nav-bar-logged-out.pug
     .container.panel.panel-default
       .panel-body
-      h1#poll-title
-      #optionsData
-      form#vote-form(action='/vote?pollid=' + pollid, method='post')
-        label I would like to vote for:
-        select#poll-options(name='choice')
-          option(selected, disabled, hidden) Choose an option
-        div#custom-option(style='display:none')
-          label(for='custom-option-input') Custom Option:
-          input#custom-option-input(type='text', name='choice', disabled)
-        input(type='submit', value="Submit")
-      button#delete-button(style='visibility:hidden') Delete Poll
-      div#poll-data
-        h1 Poll Data
-      if (user)
-        button#twitter-button Share on Twitter
+        h1#poll-title
+        #optionsData
+        form#vote-form(action='/vote?pollid=' + pollid, method='post')
+          label I would like to vote for:
+          select#poll-options(name='choice')
+            option(selected, disabled, hidden) Choose an option
+          div#custom-option(style='display:none')
+            label(for='custom-option-input') Custom Option:
+            input#custom-option-input(type='text', name='choice', disabled)
+          input(type='submit', value="Submit")
+        button#delete-button(style='visibility:hidden') Delete Poll
+        div#poll-data
+          h1 Poll Data
+        if (user)
+          button#twitter-button Share on Twitter
 
     include jquery.pug
     include bootstrap-js.pug

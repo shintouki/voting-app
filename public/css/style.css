@@ -1,3 +1,14 @@
+#title, #options {
+  width: 100%;
+  color: black;
+  margin-bottom: 1em; }
+
+#options {
+  height: 10em; }
+
+#create-poll-btn {
+  color: black; }
+
 body {
   background-color: #333;
   color: white; }
@@ -7,7 +18,6 @@ body {
   border: none; }
 
 .navbar-inverse {
-  background-color: #333;
   border: none; }
 
 .navbar-btn {
