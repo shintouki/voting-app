@@ -9,8 +9,9 @@ nav.navbar.navbar-default.navbar-static-top.navbar-inverse
       a.navbar-brand(href='/polls') Pollster
     #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
-        li
+        li.active
           a(href='/polls') Home
+            span.sr-only (current)
         li
           button#login-button.btn.btn-default.navbar-btn(type='button') Log in with Twitter
 script.
