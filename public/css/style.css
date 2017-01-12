@@ -1,22 +1,3 @@
-#title, #options {
-  width: 100%;
-  color: black;
-  margin-bottom: 1em; }
-
-#options {
-  height: 10em; }
-
-#create-poll-btn {
-  color: black; }
-
-body {
-  background-color: #333;
-  color: white; }
-
-.container {
-  background-color: black;
-  border: none; }
-
 .navbar-inverse {
   border: none; }
 
@@ -29,5 +10,36 @@ body {
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #fff;
   background-color: teal; }
+
+#title, #options {
+  width: 100%;
+  color: black;
+  margin-bottom: 1em; }
+
+#options {
+  height: 10em; }
+
+#create-poll-btn {
+  color: black; }
+
+#poll-options {
+  color: black; }
+
+#form-input-btn, #delete-button, #twitter-button {
+  color: black; }
+
+#form-input-btn {
+  margin-top: 1em; }
+
+#twitter-button {
+  margin-top: 1em; }
+
+body {
+  background-color: #333;
+  color: white; }
+
+.container {
+  background-color: black;
+  border: none; }
 
 /*# sourceMappingURL=style.css.map */

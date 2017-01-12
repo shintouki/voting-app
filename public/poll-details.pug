@@ -15,18 +15,21 @@ html(lang="en")
         h1#poll-title
         #optionsData
         form#vote-form(action='/vote?pollid=' + pollid, method='post')
-          label I would like to vote for:
-          select#poll-options(name='choice')
-            option(selected, disabled, hidden) Choose an option
+          div
+            label I would like to vote for:
+          div
+            select#poll-options(name='choice')
+              option(selected, disabled, hidden) Choose an option
           div#custom-option(style='display:none')
             label(for='custom-option-input') Custom Option:
             input#custom-option-input(type='text', name='choice', disabled)
-          input(type='submit', value="Submit")
-        button#delete-button(style='visibility:hidden') Delete Poll
-        div#poll-data
-          h1 Poll Data
+          div
+            input#form-input-btn(type='submit', value="Submit")
         if (user)
           button#twitter-button Share on Twitter
+        div#poll-data
+          h1 Poll Data
+        button#delete-button(style='visibility:hidden') Delete Poll
 
     include jquery.pug
     include bootstrap-js.pug
