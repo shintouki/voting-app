@@ -1,4 +1,4 @@
-nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+nav.navbar.navbar-default.navbar-static-top.navbar-inverse
   .container
     .navbar-header
       button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar')
@@ -12,7 +12,7 @@ nav.navbar.navbar-default.navbar-fixed-top.navbar-inverse
         li
           a(href='/polls') Home
         li
-          a#login-button(href='#') Log in with Twitter
+          button#login-button.btn.btn-default.navbar-btn(type='button') Log in with Twitter
 script.
   function popupWindow(url, title, w, h) {
     var yPos = window.outerHeight / 2 + window.screenY - (h / 2)
