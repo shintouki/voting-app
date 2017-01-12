@@ -24,6 +24,7 @@
         innerDiv.className = 'pollInnerDiv';
         var a = document.createElement('a');
         a.href =  appUrl + '/polldetails/' + id;
+        a.className = 'list-group-item';
         a.innerHTML = title;
         innerDiv.appendChild(a);
         userPollsDiv.appendChild(innerDiv);

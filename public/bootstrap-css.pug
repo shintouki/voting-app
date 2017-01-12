@@ -1,6 +1,6 @@
 //- If cdn for bootstrap.css doesn't work, load from server
 script.
-  $(document).ready(function() {}
+  $(document).ready(function() {
     var $span = $('<span class="bs hidden"></span>');
     var $bs = $('body').append($span).find('.bs');
     if ($bs.css('display') !== 'none') {

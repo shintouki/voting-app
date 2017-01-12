@@ -11,8 +11,11 @@ html(lang="en")
     else
       include nav-bar-logged-out.pug
     .container
-      p Your Polls
-      #user-polls
+      h4.text-center These are the polls you have created.
+      h4.text-center Select a poll to see poll details and vote.
+      a(href='/newpoll')
+        h4.text-center Or click on this text to create your own poll.
+      #user-polls.list-group
     include jquery.pug
     include bootstrap-js.pug
     script(type='text/javascript', src='/common/ajax-functions.js')
