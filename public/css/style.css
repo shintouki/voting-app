@@ -34,6 +34,16 @@
 #twitter-button {
   margin-top: 1em; }
 
+.left-side {
+  float: left; }
+
+.right-side {
+  float: right; }
+
+#delete-button {
+  margin-top: 1em;
+  width: 100%; }
+
 body {
   background-color: #333;
   color: white; }

@@ -15,7 +15,15 @@
   margin-top: 1em;
 }
 
-#delete-button {
-
+.left-side {
+  float: left;
 }
 
+.right-side {
+  float: right;
+}
+
+#delete-button {
+  margin-top: 1em;
+  width: 100%;
+}

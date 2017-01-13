@@ -12,27 +12,27 @@ html(lang="en")
       include nav-bar-logged-out.pug
     .container.panel.panel-default
       .panel-body
-        h1#poll-title
-        #optionsData
-        form#vote-form(action='/vote?pollid=' + pollid, method='post')
-          div
-            label I would like to vote for:
-          div
-            select#poll-options(name='choice')
-              option(selected, disabled, hidden) Choose an option
-          div#custom-option(style='display:none')
-            label(for='custom-option-input') Custom Option:
-            input#custom-option-input(type='text', name='choice', maxlength="201", disabled)
-          div
-            input#form-input-btn(type='submit', value="Submit")
-        if (user)
-          button#twitter-button Share on Twitter
-        //- div#poll-data
-        //-   h1 Poll Data
-
-        button#delete-button(style='visibility:hidden') Delete Poll
-        div
+        .left-side
+          h1#poll-title
+          #optionsData
+          form#vote-form(action='/vote?pollid=' + pollid, method='post')
+            div
+              label I would like to vote for:
+            div
+              select#poll-options(name='choice')
+                option(selected, disabled, hidden) Choose an option
+            div#custom-option(style='display:none')
+              label(for='custom-option-input') Custom Option:
+              input#custom-option-input(type='text', name='choice', maxlength="201", disabled)
+            div
+              input#form-input-btn(type='submit', value="Submit")
+          if (user)
+            button#twitter-button Share on Twitter
+          //- div#poll-data
+          //-   h1 Poll Data
+        .right-side
           canvas#myChart(width='400', height='400')
+          button#delete-button(style='visibility:hidden') Delete Poll
 
     include jquery.pug
     include bootstrap-js.pug
