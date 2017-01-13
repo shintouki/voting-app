@@ -54,9 +54,26 @@ function PollHandler() {
     // if (optionsArr[optionsArr.length - 1] === "") {
     //   optionsArr = optionsArr.slice(0, optionsArr.length-1);
     // }
+    function removeDuplicates(arr) {
+      var seen = {};
+      var retArr = [];
+      var j = 0;
+      for (var i=0; i<arr.length; i++) {
+        var item = arr[i];
+        if (seen[item] !== 1) {
+          retArr[j++] = item;
+          seen[item] = 1;
+        }
+      }
+      return retArr;
+    }
+
+    optionsArr = removeDuplicates(optionsArr);
+    console.log(optionsArr);
     
     var optionObjectArr = [];
     for (var i=0; i<optionsArr.length; i++) {
+      // Skip if option is empty, it means it was a blank line
       if (optionsArr[i] === "") {
         continue;
       }
@@ -160,7 +177,7 @@ function PollHandler() {
           // console.log(options);
           if (!choiceFound) {
             // Create new option if choice not found
-            console.log("choice not found");
+            // console.log("choice not found");
             var newOption = {
               optionKey: options.length,
                       optionText: choice,
