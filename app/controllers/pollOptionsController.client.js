@@ -23,6 +23,30 @@
 
   function drawPieChart(optionsObj) {
     // console.log(optionsObj);
+    var colors = [
+      'rgb(77, 77, 77)',
+      'rgb(93, 165, 218)',
+      'rgb(250, 164, 58)',
+      'rgb(96, 189, 104)',
+      'rgb(241, 124, 176)',
+      'rgb(178, 145, 47)',
+      'rgb(178, 118, 178)',
+      'rgb(222, 207, 63)',
+      'rgb(241, 88, 84)',
+    ];
+
+    var hoverColors = [
+      'rgb(97, 97, 97)',
+      'rgb(113, 185, 238)',
+      'rgb(270, 184, 78)',
+      'rgb(116, 209, 124)',
+      'rgb(261, 144, 196)',
+      'rgb(198, 165, 67)',
+      'rgb(198, 138, 198)',
+      'rgb(242, 227, 83)',
+      'rgb(261, 108, 104)',
+    ];
+
     var optionLabels = [];
     var optionData = [];
     var optionColor = [];
@@ -31,12 +55,12 @@
       var text = optionsObj[i].optionText;
       var count = optionsObj[i].optionCount;
       
-      var rVal = Math.floor(Math.random() * 200);
-      var gVal = Math.floor(Math.random() * 200);
-      var bVal = Math.floor(Math.random() * 200);
+      // var rVal = Math.floor(Math.random() * 200);
+      // var gVal = Math.floor(Math.random() * 200);
+      // var bVal = Math.floor(Math.random() * 200);
       
-      var colorVal = 'rgb(' + rVal + ', ' + gVal + ', ' + bVal + ')';
-      var hoverColorVal = 'rgb(' + (rVal+20) + ', ' + (gVal+20) + ', ' + (bVal+20) + ')';
+      // var colorVal = 'rgb(' + rVal + ', ' + gVal + ', ' + bVal + ')';
+      // var hoverColorVal = 'rgb(' + (rVal+20) + ', ' + (gVal+20) + ', ' + (bVal+20) + ')';
       
       optionLabels.push(text);
       optionData.push(count);
@@ -57,9 +81,14 @@
         }]
     };
 
-    var myPieChart = new Chart(ctx,{
+    var options = {
+      responsive: false
+    };
+
+    var myPieChart = new Chart(ctx, {
       type: 'pie',
-      data: data
+      data: data,
+      options: options
     });
   }
 
