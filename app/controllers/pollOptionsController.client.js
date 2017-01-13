@@ -66,30 +66,30 @@
 
   }
 
-  function showPollData(data) {
-    var parsedData = JSON.parse(data);
-    if (isEmpty(parsedData)) {
-      return;
-    }
-    var options = parsedData[pollId].options;
-    // console.log(options);
-    for (var i=0; i<options.length; i++) {
-      var option = options[i];
+  // function showPollData(data) {
+  //   var parsedData = JSON.parse(data);
+  //   if (isEmpty(parsedData)) {
+  //     return;
+  //   }
+  //   var options = parsedData[pollId].options;
+  //   // console.log(options);
+  //   for (var i=0; i<options.length; i++) {
+  //     var option = options[i];
       
-      var optionDataDiv = document.createElement('div');
-      var pText = document.createElement('p');
-      var pCount = document.createElement('p');
+  //     var optionDataDiv = document.createElement('div');
+  //     var pText = document.createElement('p');
+  //     var pCount = document.createElement('p');
 
-      pText.innerHTML = option.optionText + ": " + option.optionCount;
-      optionDataDiv.appendChild(pText);
-      pollData.appendChild(optionDataDiv);
-    }
+  //     pText.innerHTML = option.optionText + ": " + option.optionCount;
+  //     optionDataDiv.appendChild(pText);
+  //     pollData.appendChild(optionDataDiv);
+  //   }
 
 
-  }
+  // }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, populatePollOptions));
-  ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, showPollData));
+  // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, showPollData));
 
 
   voteForm.addEventListener('submit', function() {
@@ -181,5 +181,35 @@
 
   }
   
+  // Pie Chart
+  var ctx = document.getElementById("myChart");
+  var myPieChart = new Chart(ctx,{
+    type: 'pie',
+    data: data
+  });
+
+  var data = {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [
+        {
+            data: [300, 50, 100],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ],
+            hoverBackgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56"
+            ]
+        }]
+  };
+
+
 
 })();

@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 var path = require('path');
-var $ = require('jquery');
+// var $ = require('jquery');
 
 var bodyParser = require('body-parser');
 
@@ -28,6 +28,7 @@ app.use('/common', express.static(path.join(__dirname, '/app/common')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/chartjs', express.static(__dirname + '/node_modules/chart.js/dist'));
 
 app.use(session({
 	secret: 'secretVotingApp',

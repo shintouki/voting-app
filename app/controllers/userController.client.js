@@ -1,7 +1,6 @@
 'use strict';
 
 (function () {
-
    var displayName = document.querySelector('#display-name');
    var apiUrl = appUrl + '/api/:id';
 
