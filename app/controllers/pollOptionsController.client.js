@@ -1,17 +1,15 @@
 'use strict';
 
 (function () {
-  // var pageTitle = document.querySelector('title');
   var pollTitle = document.querySelector('#poll-title');
   var voteForm = document.querySelector('#vote-form');
-  // var pollOptions = document.querySelector('#poll-options');
   var selectField = document.querySelector("#poll-options");
   var customOptionDiv = document.querySelector("#custom-option");
   var customOptionInput = document.querySelector("#custom-option-input");
   var deletePollButton = document.querySelector('#delete-button');
   var twitterButton = document.querySelector('#twitter-button');
   var pollData = document.querySelector('#poll-data');
-  // console.log(selectField);
+
   var apiUrlAllPolls = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
 
@@ -22,7 +20,49 @@
     }
     return true;
   }
-  // console.log(pageTitle);
+
+  function drawPieChart(optionsObj) {
+    // console.log(optionsObj);
+    var optionLabels = [];
+    var optionData = [];
+    var optionColor = [];
+    var optionHoverColor = [];
+    for (var i=0; i<optionsObj.length; i++) {
+      var text = optionsObj[i].optionText;
+      var count = optionsObj[i].optionCount;
+      
+      var rVal = Math.floor(Math.random() * 200);
+      var gVal = Math.floor(Math.random() * 200);
+      var bVal = Math.floor(Math.random() * 200);
+      
+      var colorVal = 'rgb(' + rVal + ', ' + gVal + ', ' + bVal + ')';
+      var hoverColorVal = 'rgb(' + (rVal+20) + ', ' + (gVal+20) + ', ' + (bVal+20) + ')';
+      
+      optionLabels.push(text);
+      optionData.push(count);
+      optionColor.push(colorVal);
+      optionHoverColor.push(hoverColorVal);
+    }
+
+    // Pie Chart
+    var ctx = document.getElementById("myChart").getContext("2d");
+    
+    var data = {
+      labels: optionLabels,
+      datasets: [
+        {
+          data: optionData,
+          backgroundColor: optionColor,
+          hoverBackgroundColor: optionHoverColor
+        }]
+    };
+
+    var myPieChart = new Chart(ctx,{
+      type: 'pie',
+      data: data
+    });
+  }
+
   function populatePollOptions(data) {
     var parsedData = JSON.parse(data);
     if (isEmpty(parsedData)) {
@@ -39,7 +79,6 @@
     document.title = title;    
 
     for (var i=0; i<options.length; i++) {
-      // console.log(options[i]);
       var optionText = options[i]['optionText'];
       var option = document.createElement('option');
       option.innerHTML = optionText;
@@ -64,41 +103,15 @@
 
     }
 
+    drawPieChart(options);
+
   }
 
-  // function showPollData(data) {
-  //   var parsedData = JSON.parse(data);
-  //   if (isEmpty(parsedData)) {
-  //     return;
-  //   }
-  //   var options = parsedData[pollId].options;
-  //   // console.log(options);
-  //   for (var i=0; i<options.length; i++) {
-  //     var option = options[i];
-      
-  //     var optionDataDiv = document.createElement('div');
-  //     var pText = document.createElement('p');
-  //     var pCount = document.createElement('p');
-
-  //     pText.innerHTML = option.optionText + ": " + option.optionCount;
-  //     optionDataDiv.appendChild(pText);
-  //     pollData.appendChild(optionDataDiv);
-  //   }
-
-
-  // }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, populatePollOptions));
   // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, showPollData));
 
-
   voteForm.addEventListener('submit', function() {
-    // console.log("qq");
-    // console.log(this);
-    // console.log(selectField.options);
-    // console.log(selectField.selectedIndex);
-    // console.log(customOptionInput.value);
-    
     if (selectField.selectedIndex === 0) {
       // If first option, it is not a valid option so don't submit
       alert("Please select an option.");
@@ -181,35 +194,4 @@
 
   }
   
-  // Pie Chart
-  var ctx = document.getElementById("myChart");
-  var myPieChart = new Chart(ctx,{
-    type: 'pie',
-    data: data
-  });
-
-  var data = {
-    labels: [
-        "Red",
-        "Blue",
-        "Yellow"
-    ],
-    datasets: [
-        {
-            data: [300, 50, 100],
-            backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ],
-            hoverBackgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56"
-            ]
-        }]
-  };
-
-
-
 })();
