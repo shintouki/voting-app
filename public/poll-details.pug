@@ -5,7 +5,7 @@ html(lang="en")
     title Poll Details
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
     link(href='/public/css/style.css', rel='stylesheet', type='text/css')
-  body 
+  body
     if (user) 
       include nav-bar-logged-in.pug
     else
@@ -22,7 +22,7 @@ html(lang="en")
               option(selected, disabled, hidden) Choose an option
           div#custom-option(style='display:none')
             label(for='custom-option-input') Custom Option:
-            input#custom-option-input(type='text', name='choice', disabled)
+            input#custom-option-input(type='text', name='choice', maxlength="201", disabled)
           div
             input#form-input-btn(type='submit', value="Submit")
         if (user)
