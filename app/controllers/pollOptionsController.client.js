@@ -61,7 +61,8 @@
       
       // var colorVal = 'rgb(' + rVal + ', ' + gVal + ', ' + bVal + ')';
       // var hoverColorVal = 'rgb(' + (rVal+20) + ', ' + (gVal+20) + ', ' + (bVal+20) + ')';
-      
+      var colorVal = colors[i%10];
+      var hoverColorVal = hoverColors[i%10];
       optionLabels.push(text);
       optionData.push(count);
       optionColor.push(colorVal);
@@ -82,7 +83,12 @@
     };
 
     var options = {
-      responsive: false
+      responsive: false,
+      legend: {
+        labels: {
+          fontColor: '#fff'
+        }
+      }
     };
 
     var myPieChart = new Chart(ctx, {
