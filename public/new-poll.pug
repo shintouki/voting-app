@@ -17,11 +17,11 @@ html(lang="en")
           div
             label(for='title') Title:
           div
-            input#title(type='text', name='pollTitle')
+            input#title(type='text', name='pollTitle', maxlength="401")
           div
             label(for='options') Options (Separate with lines):
           div
-            textarea#options(name='pollOptions')
+            textarea#options(name='pollOptions', maxlength="201")
           .button
             button#create-poll-btn(type='submit') Create Poll
     include jquery.pug
