@@ -18,7 +18,7 @@ function createPollId() {
 function PollHandler() {
 
   this.getAllPolls = function (req, res) {
-    process.env.PORT
+    console.log(process.env.PORT);
     Polls
       .find()
       .exec(function (err, result) {
