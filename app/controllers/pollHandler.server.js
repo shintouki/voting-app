@@ -18,6 +18,7 @@ function createPollId() {
 function PollHandler() {
 
   this.getAllPolls = function (req, res) {
+    console.log("#$#$#$#$#$");
     console.log(process.env);
     Polls
       .find()
@@ -70,7 +71,7 @@ function PollHandler() {
     }
 
     optionsArr = removeDuplicates(optionsArr);
-    console.log(optionsArr);
+    // console.log(optionsArr);
     
     var optionObjectArr = [];
     for (var i=0; i<optionsArr.length; i++) {
