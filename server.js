@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 // Enable dotenv if you want to run <node server.js> to run app locally
-require('dotenv').load();
+// require('dotenv').load();
 require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
