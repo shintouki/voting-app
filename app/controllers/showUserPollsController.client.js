@@ -1,7 +1,6 @@
 'use strict';
 
 (function() {
-  // var createPollButton = document.querySelector('#create-poll-btn');
   var userPollsDiv = document.querySelector('#user-polls');
   var apiUrlUserPollIds = appUrl + '/api/:id/polls';
   var apiUrlAllPolls = appUrl + '/api/allpolls';
@@ -10,9 +9,8 @@
     function getUserPollIds(data2) {
       var allPollsData = JSON.parse(data);
       var userPollIdsData = JSON.parse(data2);
-      // console.log(allPollsData);
-      // console.log(userPollIdsData);
       var pollIdsArr = userPollIdsData['pollIdList'];
+
       for (var i=0; i<pollIdsArr.length; i++) {
         var pollId = pollIdsArr[i];
         var pollObj = allPollsData[pollId];
@@ -30,7 +28,6 @@
         userPollsDiv.appendChild(innerDiv);
       }
 
-      
     }
 
     ajaxFunctions.ajaxRequest('GET', apiUrlUserPollIds, getUserPollIds);

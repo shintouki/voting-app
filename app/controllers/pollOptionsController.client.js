@@ -22,7 +22,6 @@
   }
 
   function drawPieChart(optionsObj) {
-    // console.log(optionsObj);
     var colors = [
       'rgb(77, 77, 77)',
       'rgb(93, 165, 218)',
@@ -54,15 +53,10 @@
     for (var i=0; i<optionsObj.length; i++) {
       var text = optionsObj[i].optionText;
       var count = optionsObj[i].optionCount;
-      
-      // var rVal = Math.floor(Math.random() * 200);
-      // var gVal = Math.floor(Math.random() * 200);
-      // var bVal = Math.floor(Math.random() * 200);
-      
-      // var colorVal = 'rgb(' + rVal + ', ' + gVal + ', ' + bVal + ')';
-      // var hoverColorVal = 'rgb(' + (rVal+20) + ', ' + (gVal+20) + ', ' + (bVal+20) + ')';
+
       var colorVal = colors[i%10];
       var hoverColorVal = hoverColors[i%10];
+
       optionLabels.push(text);
       optionData.push(count);
       optionColor.push(colorVal);
@@ -135,16 +129,13 @@
       if (pollUserId === currentUserId) {
         deletePollButton.style.visibility = 'visible';
       }
-
     }
 
     drawPieChart(options);
-
   }
 
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, populatePollOptions));
-  // ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrlAllPolls, showPollData));
 
   voteForm.addEventListener('submit', function() {
     if (selectField.selectedIndex === 0) {
@@ -170,15 +161,11 @@
     }
 
     alert("You have voted for: " + this.choice.value);
-    // setTimeout(function () { window.location.reload(); }, 10)
-
   });
 
   if (user) {
     selectField.addEventListener('change', function() {
-      // If create new option is selected
-      // console.log(this.options[this.selectedIndex].value);
-      // console.log(this.options);
+      // If create new custom option is selected
       if (this.options[this.selectedIndex].value == 'customOption') {
         // Show custom option input field
         customOptionDiv.style.display = 'inline';
@@ -192,10 +179,6 @@
       }
     }, false);
 
-    // customOptionButton.addEventListener('change', function() {
-
-    // }, false);
-
     deletePollButton.addEventListener('click', function() {
       var confirmed = confirm("Are you sure you want to delete this poll?");
       if (confirmed) {
@@ -205,8 +188,8 @@
         });
       
         alert("The poll was successfully deleted.")
-        // I was getting an error with res.redirect('polls') in pollHandler so
-        // I am using this instead for now.
+        // I got an error with res.redirect('polls') in pollHandler so I used window.location.href
+        // to manually redirect to /polls from client side
         window.location.href = '/polls';
       }    
     }, false);

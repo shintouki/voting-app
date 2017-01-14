@@ -6,12 +6,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
 var path = require('path');
-// var $ = require('jquery');
-
 var bodyParser = require('body-parser');
 
 var app = express();
-// require('dotenv').load();
+// Enable dotenv if you want to run <node server.js> to run app locally
+require('dotenv').load();
 require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
@@ -19,10 +18,7 @@ mongoose.connect(process.env.MONGO_URI);
 app.set('views', process.cwd() + '/public')
 app.set('view engine', 'pug')
 
-// app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
-// app.use('/common', express.static(process.cwd() + '/app/common'));
-
 app.use('/controllers', express.static(path.join(__dirname, '/app/controllers')));
 app.use('/common', express.static(path.join(__dirname, '/app/common')));
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));

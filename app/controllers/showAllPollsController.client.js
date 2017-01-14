@@ -26,7 +26,6 @@
         userPollsDiv.appendChild(innerDiv);
       }
     }
-
   }
 
   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, displayAllPolls));

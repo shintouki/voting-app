@@ -15,14 +15,6 @@ module.exports = function (passport) {
 		});
 	});
 
-	// passport.serializeUser(function(user, cb) {
-	//   cb(null, user);
-	// });
-
-	// passport.deserializeUser(function(obj, cb) {
-	//   cb(null, obj);
-	// });
-
 	passport.use(new TwitterStrategy({
 		consumerKey: configAuth.twitterAuth.consumerKey,
 		consumerSecret: configAuth.twitterAuth.consumerSecret,
@@ -30,7 +22,6 @@ module.exports = function (passport) {
 	},
 	function (token, tokenSecret, profile, done) {
 		// profile is the info sent by twitter. ie: id, displayName, tweets
-		// console.log(profile);
 		process.nextTick(function () {
 			User.findOne({ 'twitter.id': profile.id }, function (err, user) {
 				if (err) {
