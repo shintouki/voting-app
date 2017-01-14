@@ -12,8 +12,8 @@ html(lang="en")
     else
       include nav-bar-logged-out.pug
     .container.panel.panel-default
-      .panel-body
-        .left-side
+      .panel-body.row
+        .col-sm-4
           h1#poll-title
           #optionsData
           form#vote-form(action='/vote?pollid=' + pollid, method='post')
@@ -29,7 +29,7 @@ html(lang="en")
               button#form-input-btn.btn.btn-primary(type='submit', value="Submit") Submit
           if (user)
             button#twitter-button.btn.btn-info Share on Twitter
-        .right-side
+        .col-sm-8
           canvas#myChart(width='400', height='400')
           button#delete-button.btn.btn-danger(style='visibility:hidden') Delete Poll
 
