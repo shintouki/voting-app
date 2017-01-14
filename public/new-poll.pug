@@ -22,8 +22,8 @@ html(lang="en")
             label(for='options') Options (Separate with lines):
           div
             textarea#options(name='pollOptions', maxlength="3000")
-          .button
-            button#create-poll-btn(type='submit') Create Poll
+          div
+            button#create-poll-btn.btn.btn-primary(type='submit') Create Poll
     include jquery.pug
     include bootstrap-js.pug
     script.

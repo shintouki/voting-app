@@ -1,4 +1,3 @@
-
 @import 'nav-bar';
 @import 'new-poll';
 @import 'poll-details';
@@ -16,4 +15,8 @@ body {
 
 input {
   color: black;
+}
+
+#create-poll-btn {
+  color: white;
 }
