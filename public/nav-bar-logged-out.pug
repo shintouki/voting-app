@@ -13,7 +13,7 @@ nav.navbar.navbar-default.navbar-static-top.navbar-inverse
           a(href='/polls') Home
             span.sr-only (current)
         li
-          button#login-button.btn.btn-default.navbar-btn(type='button') Log in with Twitter
+          button#login-button.btn.btn-default.navbar-btn.twitter-color(type='button') Log in with Twitter
 script.
   function popupWindow(url, title, w, h) {
     var yPos = window.outerHeight / 2 + window.screenY - (h / 2)
@@ -22,7 +22,7 @@ script.
   } 
 
   var loginButton = document.querySelector('#login-button');
-  
+
   loginButton.addEventListener('click', function() {
     var authUrl = '/auth/twitter';
     popupWindow(authUrl, 'tweetPoll', 500, 500);
