@@ -19,6 +19,5 @@ nav.navbar.navbar-default.navbar-static-top.navbar-inverse
           a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
             span#display-name
             span.caret
-          ul.dropdown-menu
-            li
-              a(href='/logout') Logout
+          #logoutMenu.dropdown-menu
+            a#logout-btn.btn.btn-primary(href='/logout') Logout

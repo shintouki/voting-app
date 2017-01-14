@@ -12,6 +12,12 @@
   color: #fff;
   background-color: teal; }
 
+#logoutMenu {
+  text-align: center; }
+
+#logout-btn {
+  width: 93%; }
+
 #title, #options {
   width: 100%;
   color: black;
