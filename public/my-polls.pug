@@ -17,6 +17,8 @@ html(lang='en')
         a(href='/newpoll')
           h4.text-center Or click on this text to create your own poll.
         #user-polls.list-group
+    include author.pug
+    
     include jquery.pug
     include bootstrap-js.pug
     script(type='text/javascript', src='/common/ajax-functions.js')

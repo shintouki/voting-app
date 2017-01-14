@@ -12,6 +12,11 @@ body {
   border: none;
 }
 
+#author-container {
+  background-color: #333;
+  padding: 0;
+}
+
 .twitter-color {
   background-color: #4099FF;
   color: white;
@@ -24,4 +29,8 @@ input {
 
 #create-poll-btn {
   color: white;
+}
+
+.info-color {
+  color: #33b5e5
 }
