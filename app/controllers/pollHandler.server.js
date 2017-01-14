@@ -19,7 +19,12 @@ function PollHandler() {
 
   this.getAllPolls = function (req, res) {
     console.log("#$#$#$#$#$");
-    console.log(process.env);
+    console.log(process.env.PORT);
+    // console.log(process.env.TWITTER_KEY);
+    // console.log(process.env.TWITTER_SECRET);
+    // console.log(process.env.MONGO_URI);
+    // console.log(process.env.PORT);
+    // console.log(process.env.APP_URL);
     Polls
       .find()
       .exec(function (err, result) {
