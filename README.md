@@ -1,5 +1,5 @@
-Voting App
+Polling App
 
-Built on Clementine.js boilerplate for fullstack JavaScript development.
+https://pollsta.herokuapp.com/polls
 
 Vote on polls created by other users and create your own polls.
