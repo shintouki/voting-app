@@ -109,6 +109,9 @@
 
     for (var i=0; i<options.length; i++) {
       var optionText = options[i]['optionText'];
+      // if (optionText === 'undefined') {
+      //   continue;
+      // }
       var option = document.createElement('option');
       option.innerHTML = optionText;
       selectField.appendChild(option);

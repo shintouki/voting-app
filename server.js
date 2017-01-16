@@ -27,7 +27,7 @@ app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/di
 app.use('/chartjs', express.static(__dirname + '/node_modules/chart.js/dist'));
 
 app.use(session({
-	secret: 'secretVotingApp',
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: true
 }));
@@ -36,8 +36,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function (req, res, next) {
-    res.locals.login = req.isAuthenticated();
-    next();
+  res.locals.login = req.isAuthenticated();
+  next();
 });
 
 app.use(bodyParser.json());

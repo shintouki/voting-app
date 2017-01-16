@@ -18,6 +18,7 @@ function createPollId() {
 function PollHandler() {
 
   this.getAllPolls = function (req, res) {
+    console.log(req.user);
     Polls
       .find()
       .exec(function (err, result) {
@@ -72,9 +73,8 @@ function PollHandler() {
       }
 
       var currOption = {
-        optionKey: i,
-                optionText: optionsArr[i],
-                optionCount: 0
+        optionText: optionsArr[i],
+        optionCount: 0
       }
       optionObjectArr.push(currOption);
     }
@@ -158,9 +158,8 @@ function PollHandler() {
           if (!choiceFound) {
             // Create new option if choice not found
             var newOption = {
-              optionKey: options.length,
-                      optionText: choice,
-                      optionCount: 1
+              optionText: choice,
+              optionCount: 1
             }
             options.push(newOption);
           }
