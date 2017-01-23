@@ -3,9 +3,9 @@
 var path = process.cwd();
 var PollHandler = require(path + '/app/controllers/pollHandler.server.js');
 
-module.exports = function (app, passport) {
+module.exports = function(app, passport) {
 
-	function isLoggedIn (req, res, next) {
+	function isLoggedIn(req, res, next) {
 		if (req.isAuthenticated()) {
 			return next();
 		}
@@ -25,6 +25,8 @@ module.exports = function (app, passport) {
 
 	app.route('/polls')
 		.get(function (req, res) {
+			console.log("app.get('env')");
+			console.log(app.get('env'));
 			res.render('polls');
 		});
 

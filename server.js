@@ -9,8 +9,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var app = express();
+
 // Enable dotenv if you want to run <node server.js> to run app locally
-require('dotenv').load();
+// require('dotenv').load();
 require('./app/config/passport')(passport);
 
 mongoose.connect(process.env.MONGO_URI);
@@ -35,13 +36,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// I don't use this but this can also be used to check if user is logged in.
+// app.use should go here, before routes because it attaches to the app's
+// main middleware stack. It's used in the order specified by middleware
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();
   next();
 });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 routes(app, passport);
 
