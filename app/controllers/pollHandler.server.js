@@ -18,8 +18,6 @@ function createPollId() {
 function PollHandler() {
 
   this.getAllPolls = function(req, res) {
-    // console.log("req.user...");
-    // console.log(req.user);
     Polls
       .find()
       .exec(function (err, result) {
