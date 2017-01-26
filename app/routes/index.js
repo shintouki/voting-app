@@ -25,8 +25,6 @@ module.exports = function(app, passport) {
 
 	app.route('/polls')
 		.get(function (req, res) {
-			console.log("app.get('env')");
-			console.log(app.get('env'));
 			res.render('polls');
 		});
 
