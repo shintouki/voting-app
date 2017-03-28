@@ -1,10 +1,12 @@
 'use strict';
 
+// Show user polls, similar to show all polls.
 (function() {
   var userPollsDiv = document.querySelector('#user-polls');
   var apiUrlUserPollIds = appUrl + '/api/:id/polls';
   var apiUrlAllPolls = appUrl + '/api/allpolls';
   
+  // Data parameters are from DB, retreived with ajax
   function updateUserPolls(data) {
     function getUserPollIds(data2) {
       var allPollsData = JSON.parse(data);

@@ -13,6 +13,7 @@
   var apiUrlAllPolls = appUrl + '/api/allpolls';
   var apiUrlDeletePoll = appUrl + '/deletepoll';
 
+  // Check if object is empty
   function isEmpty(obj) {
     for(var key in obj) {
         if(obj.hasOwnProperty(key))
@@ -21,6 +22,7 @@
     return true;
   }
 
+  // Draw the pie chart for the poll
   function drawPieChart(optionsObj) {
     var colors = [
       'rgb(77, 77, 77)',
@@ -92,6 +94,7 @@
     });
   }
 
+  // Draw the poll options
   function populatePollOptions(data) {
     var parsedData = JSON.parse(data);
     if (isEmpty(parsedData)) {

@@ -5,6 +5,8 @@
   var userPollsDiv = document.querySelector('#all-polls');
   var apiUrl = appUrl + '/api/allpolls';
 
+  // Display all polls.
+  // Takes in parameter, data that contains poll data from DB
   function displayAllPolls(data) {
     var parsedData = JSON.parse(data);
     for (var key in parsedData) {

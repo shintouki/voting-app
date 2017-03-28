@@ -1,5 +1,6 @@
 'use strict';
 
+// Packages I used
 var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
@@ -12,13 +13,19 @@ var app = express();
 
 // Enable dotenv if you want to run <node server.js> to run app locally
 // require('dotenv').load();
+
+// Passport middleware for auth
 require('./app/config/passport')(passport);
 
+// Mongoose - used to map data from mongoDB database to json object so
+// it's more easily used in the server side code (handlers).
 mongoose.connect(process.env.MONGO_URI);
 
+// Pug middleware setup
 app.set('views', process.cwd() + '/public')
 app.set('view engine', 'pug')
 
+// Serve static files with express static middleware function
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/controllers', express.static(path.join(__dirname, '/app/controllers')));
 app.use('/common', express.static(path.join(__dirname, '/app/common')));
@@ -27,6 +34,13 @@ app.use('/bootstrap/js', express.static(__dirname + '/node_modules/bootstrap/dis
 app.use('/bootstrap/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use('/chartjs', express.static(__dirname + '/node_modules/chart.js/dist'));
 
+// Express session middleware setup
+// Session data is stored server-side.
+// Express uses a cookie to store session id with encryption in the user's browser.
+// Then on subsequent requests, express uses value of cookie to get session info
+// stored on server.
+// This makes it so express doesn't have to do additional requests to the server
+// every time the user logs in.
 app.use(session({
 	secret: process.env.SESSION_SECRET,
 	resave: false,
@@ -36,6 +50,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// bodyParser middleware is used to make req.body work
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

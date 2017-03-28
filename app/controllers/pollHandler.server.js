@@ -4,6 +4,7 @@ var Polls = require('../models/polls.js');
 var Users = require('../models/users.js');
 var appUrl = process.env.APP_URL
 
+// Create new poll id
 function createPollId() {
     var charArr = [];
     var charChoices = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -17,6 +18,7 @@ function createPollId() {
 
 function PollHandler() {
 
+  // Respond with list of all polls
   this.getAllPolls = function(req, res) {
     Polls
       .find()
@@ -28,12 +30,14 @@ function PollHandler() {
             var pollId = result[i]['pollId'];
             resultObj[pollId] = result[i];
           }
-   
+          // Response is a json object with poll data.
+          // I believe this is called creating a restFull api
           res.json(resultObj);
         }
       });
   };
 
+  // Respond with list of user poll ids
   this.getUserPollIds = function(req, res) {
     Users
       .findOne({ 'twitter.id': req.user.twitter.id }, { '_id': false })
@@ -44,6 +48,7 @@ function PollHandler() {
       });
   };
 
+  // Add poll to DB
   this.addPoll = function (req, res) {
     var optionsString = req.body.pollOptions;
     var optionsArr = optionsString.split("\r\n");
@@ -106,6 +111,7 @@ function PollHandler() {
 
   };
 
+  // Delete poll from DB
   this.deletePoll = function(req, res) {
     var pollId = req.body.pollId;
     
@@ -135,6 +141,7 @@ function PollHandler() {
 
   };
 
+  // Vote for a poll and save to DB
   this.votePoll = function(req, res) {
     var choice = req.body.choice;
     var pollId = req.query.pollid;

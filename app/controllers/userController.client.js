@@ -1,4 +1,5 @@
 'use strict';
+// Get displayname from DB
 
 (function () {
    var displayName = document.querySelector('#display-name');
