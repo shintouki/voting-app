@@ -1,6 +1,6 @@
 'use strict';
 
-// Packages I used
+// Packages
 var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
